@@ -13,8 +13,5 @@
         android:title="@string/favorite"
         android:icon="@drawable/ic_favorite"/>
 
-    <item android:id="@+id/itemNotification"
-        android:title="@string/notification"
-        android:icon="@drawable/ic_notifications"/>
 
 </menu>
