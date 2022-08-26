@@ -23,10 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.itemHome -> {
-                    loadFragment(homeFragment)
-
-                }
+                R.id.itemHome -> loadFragment(homeFragment)
                 R.id.itemMusic -> loadFragment(musicFragment)
                 R.id.itemFavorite -> loadFragment(favoriteFragment)
             }
