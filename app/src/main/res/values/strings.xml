@@ -5,5 +5,7 @@
     <string name="music">Music</string>
     <string name="favorite">Favorite</string>
     <string name="notification">Notification</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
