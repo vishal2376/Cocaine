@@ -2,6 +2,7 @@ package com.vishal.cocaine
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import com.vishal.cocaine.fragments.FavoriteFragment
 import com.vishal.cocaine.fragments.HomeFragment
@@ -22,7 +23,10 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.itemHome -> loadFragment(homeFragment)
+                R.id.itemHome -> {
+                    loadFragment(homeFragment)
+
+                }
                 R.id.itemMusic -> loadFragment(musicFragment)
                 R.id.itemFavorite -> loadFragment(favoriteFragment)
             }
