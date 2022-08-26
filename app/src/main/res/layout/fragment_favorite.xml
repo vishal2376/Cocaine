@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="FAVORITE"
+        android:fontFamily="@font/norwester"
         android:textColor="@color/colorAccentDark"
-        android:textSize="50sp"/>
+        android:textSize="60sp"/>
 
 </LinearLayout>
