@@ -5,17 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import com.vishal.cocaine.fragments.FavoriteFragment
 import com.vishal.cocaine.fragments.HomeFragment
-import com.vishal.cocaine.fragments.MusicFragment
+import com.vishal.cocaine.fragments.PlayerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
-    private val musicFragment = MusicFragment()
+    private val playerFragment = PlayerFragment()
     private val favoriteFragment = FavoriteFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.itemHome -> loadFragment(homeFragment)
-                R.id.itemMusic -> loadFragment(musicFragment)
+                R.id.itemMusic -> loadFragment(playerFragment)
                 R.id.itemFavorite -> loadFragment(favoriteFragment)
             }
             true

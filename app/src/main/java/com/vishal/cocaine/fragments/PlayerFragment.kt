@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.vishal.cocaine.R
 
 
-class MusicFragment : Fragment() {
+class PlayerFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
