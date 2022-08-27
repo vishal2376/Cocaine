@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.vishal.cocaine.fragments.FavoriteFragment
 import com.vishal.cocaine.fragments.HomeFragment
 import com.vishal.cocaine.fragments.PlayerFragment
+import com.vishal.cocaine.fragments.SongsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,18 +17,19 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val playerFragment = PlayerFragment()
     private val favoriteFragment = FavoriteFragment()
+    private val songsFragment = SongsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadFragment(homeFragment)
+        loadFragment(playerFragment)
         requestRuntimePermissions()
 
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.itemHome -> loadFragment(homeFragment)
-                R.id.itemMusic -> loadFragment(playerFragment)
+                R.id.itemSongs -> loadFragment(songsFragment)
                 R.id.itemFavorite -> loadFragment(favoriteFragment)
             }
             true
