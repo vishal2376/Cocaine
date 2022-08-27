@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:orientation="vertical"
         android:gravity="center"
         android:paddingHorizontal="30dp">
 
@@ -44,7 +45,18 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/kollektif"
             android:text="Song Name"
+            android:textColor="@color/text"
             android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tvSinger"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kollektif"
+            android:text="Unknown"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -61,6 +73,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/norwester"
             android:text="0:00"
+            android:textColor="@color/text"
             android:textSize="15sp" />
 
         <SeekBar
@@ -68,8 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:progress="35"
-            android:thumbTint="@color/colorAccentDark"
-            android:progressTint="@color/colorAccentDark"/>
+            android:progressTint="@color/colorAccentDark"
+            android:thumbTint="@color/colorAccentDark" />
 
         <TextView
             android:id="@+id/tvTotalDuration"
@@ -77,6 +90,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/norwester"
             android:text="4:30"
+            android:textColor="@color/text"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -86,6 +100,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgShuffle"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_shuffle" />
 
         <ImageView
             android:id="@+id/imgPrevious"
@@ -101,7 +122,7 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_play"
-            app:backgroundTint="@color/primary"
+            app:backgroundTint="@color/colorAccentDark"
             app:fabCustomSize="70dp"
             app:maxImageSize="40dp" />
 
@@ -111,6 +132,13 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_skip_next" />
 
+
+        <ImageView
+            android:id="@+id/imgRepeat"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_repeat" />
 
     </LinearLayout>
 

@@ -7,7 +7,10 @@
         <entry key="app/src/main/res/drawable/bottom_active.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/bottom_nav_favorite.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/bottom_nav_music.xml" value="0.238" />
+        <entry key="app/src/main/res/drawable/ic_music.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_play.xml" value="0.238" />
+        <entry key="app/src/main/res/drawable/ic_repeat.xml" value="0.238" />
+        <entry key="app/src/main/res/drawable/ic_shuffle.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_skip_next.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_skip_previous.xml" value="0.238" />
         <entry key="app/src/main/res/layout/actionbar.xml" value="0.35885416666666664" />

@@ -14,5 +14,6 @@
 
     <color name="colorAccentDark">#5F85DB</color>
     <color name="colorAccent">#90B8F8</color>
+    <color name="text">#E6E6FA</color>
 
 </resources>
