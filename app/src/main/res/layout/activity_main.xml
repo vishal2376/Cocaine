@@ -22,8 +22,8 @@
         android:layout_gravity="bottom"
         android:background="@color/primary"
         app:itemIconSize="28dp"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/text"
+        app:itemTextColor="@color/text"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_menu" />
 

@@ -6,7 +6,10 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/bottom_active.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/bottom_nav_favorite.xml" value="0.238" />
+        <entry key="app/src/main/res/drawable/bottom_nav_home.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/bottom_nav_music.xml" value="0.238" />
+        <entry key="app/src/main/res/drawable/ic_favorite.xml" value="0.238" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_music.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_play.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_repeat.xml" value="0.238" />
