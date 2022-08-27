@@ -6,18 +6,17 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.vishal.cocaine.fragments.FavoriteFragment
-import com.vishal.cocaine.fragments.HomeFragment
-import com.vishal.cocaine.fragments.PlayerFragment
-import com.vishal.cocaine.fragments.SongsFragment
+import com.vishal.cocaine.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val homeFragment = HomeFragment()
     private val playerFragment = PlayerFragment()
+
+    private val homeFragment = HomeFragment()
     private val favoriteFragment = FavoriteFragment()
     private val songsFragment = SongsFragment()
+    private val playlistFragment = PlaylistFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.itemHome -> loadFragment(homeFragment)
                 R.id.itemSongs -> loadFragment(songsFragment)
                 R.id.itemFavorite -> loadFragment(favoriteFragment)
+                R.id.itemPlaylist -> loadFragment(playlistFragment)
             }
             true
         }

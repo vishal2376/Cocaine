@@ -13,5 +13,9 @@
         android:title="@string/favorite"
         android:icon="@drawable/bottom_nav_favorite"/>
 
+    <item android:id="@+id/itemPlaylist"
+        android:title="@string/playlist"
+        android:icon="@drawable/bottom_nav_playlist"/>
+
 
 </menu>

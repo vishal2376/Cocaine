@@ -17,11 +17,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:paddingHorizontal="15dp"
+        android:paddingHorizontal="5dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom"
         android:background="@color/primary"
-        app:itemIconSize="28dp"
+        app:itemIconSize="26dp"
         app:itemIconTint="@color/text"
         app:itemTextColor="@color/text"
         app:labelVisibilityMode="labeled"
