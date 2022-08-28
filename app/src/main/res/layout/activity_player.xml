@@ -17,13 +17,14 @@
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical"
         android:paddingHorizontal="25dp"
-        android:paddingVertical="20dp">
+        android:paddingVertical="10dp">
 
         <!--        back button-->
         <ImageView
             android:id="@+id/imgBack"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="12dp"
             android:src="@drawable/ic_back"
             tools:ignore="ContentDescription" />
 
@@ -40,9 +41,10 @@
 
         <!--        like button-->
         <ImageView
-            android:id="@+id/imgLike"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:id="@+id/imgLikePA"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="12dp"
             android:src="@drawable/ic_favorite"
             tools:ignore="ContentDescription" />
 
@@ -65,7 +67,7 @@
             app:cardCornerRadius="20dp">
 
             <ImageView
-                android:id="@+id/imgCurrentSong"
+                android:id="@+id/imgCurrentSongPA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="50dp"
@@ -85,17 +87,18 @@
 
             <!--        song name-->
             <TextView
-                android:id="@+id/tvSongName"
+                android:id="@+id/tvSongTitlePA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kollektif"
+                android:singleLine="true"
                 android:text="Song Name"
                 android:textColor="@color/text"
                 android:textSize="28sp" />
 
             <!--        singer name-->
             <TextView
-                android:id="@+id/tvSinger"
+                android:id="@+id/tvSongArtistPA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -115,7 +118,7 @@
 
             <!--        current duration of song-->
             <TextView
-                android:id="@+id/tvCurrentDuration"
+                android:id="@+id/tvSongCurrentDurationPA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/norwester"
@@ -128,13 +131,12 @@
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
-                android:progress="35"
                 android:progressTint="@color/colorAccentDark"
                 android:thumbTint="@color/colorAccentDark" />
 
             <!--        total duration of song-->
             <TextView
-                android:id="@+id/tvCurrentTotalDuration"
+                android:id="@+id/tvSongDurationPA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/norwester"

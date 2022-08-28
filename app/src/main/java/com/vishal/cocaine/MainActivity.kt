@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //load home fragment by default
-        loadFragment(homeFragment)
+//        loadFragment(homeFragment)
+        loadFragment(musicFragment)
 
         //request storage permission
         requestRuntimePermissions()
