@@ -27,9 +27,9 @@ class PlayerActivity : AppCompatActivity() {
 
         fabPlayPause.setOnClickListener {
             if (isPlaying)
-                playSong()
-            else
                 pauseSong()
+            else
+                playSong()
         }
 
         imgBack.setOnClickListener {
