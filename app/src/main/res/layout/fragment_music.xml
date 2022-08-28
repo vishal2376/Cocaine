@@ -4,17 +4,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:background="@color/primaryDark"
     tools:context=".fragments.MusicFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+ <!--        action bar-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Songs"
-        android:fontFamily="@font/norwester"
-        android:textColor="@color/colorAccentDark"
-        android:textSize="60sp"/>
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="20dp">
+
+        <!--        back button-->
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_back"
+            tools:ignore="ContentDescription" />
+
+        <!--        title-->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/norwester"
+            android:text="Music"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="30sp" />
+
+        <!--        search button-->
+        <ImageView
+            android:id="@+id/imgSearch"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_search"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+<!--    songs list recycler view-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSongsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

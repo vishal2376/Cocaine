@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_music.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_play.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_repeat.xml" value="0.238" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_shuffle.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_skip_next.xml" value="0.238" />
         <entry key="app/src/main/res/drawable/ic_skip_previous.xml" value="0.238" />
@@ -28,6 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_player.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_playlist.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_songs.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/music_item.xml" value="0.3578125" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.238" />
       </map>
