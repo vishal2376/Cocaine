@@ -6,12 +6,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.vishal.cocaine.fragments.*
+import com.vishal.cocaine.fragments.FavoriteFragment
+import com.vishal.cocaine.fragments.HomeFragment
+import com.vishal.cocaine.fragments.MusicFragment
+import com.vishal.cocaine.fragments.PlaylistFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private val playerFragment = PlayerFragment()
 
     private val homeFragment = HomeFragment()
     private val favoriteFragment = FavoriteFragment()

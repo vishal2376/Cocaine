@@ -1,13 +1,13 @@
 package com.vishal.cocaine.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.R
-import com.vishal.cocaine.fragments.PlayerFragment
 import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
 import kotlinx.android.synthetic.main.music_item.view.*
@@ -31,13 +31,9 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
 //            .into(holder.songImg)
 
         holder.itemView.setOnClickListener {
-            val activity = it.context as AppCompatActivity
-            activity.supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.mainContainer,PlayerFragment())
-                .commitNow()
+            val i = Intent(context, PlayerActivity::class.java)
+            context.startActivity(i)
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -45,7 +41,7 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
     }
 
     class MusicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val songImg = itemView.imgSong
+//        val songImg = itemView.imgSong
         val songTitle = itemView.tvSongTitle
         val songArtist = itemView.tvSongArtist
         val songDuration = itemView.tvSongDuration

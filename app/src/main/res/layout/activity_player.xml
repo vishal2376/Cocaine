@@ -7,7 +7,7 @@
     android:background="@color/primaryDark"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".fragments.PlayerFragment">
+    tools:context=".PlayerActivity">
 
     <!--        action bar-->
     <LinearLayout
