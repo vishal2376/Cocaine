@@ -15,6 +15,6 @@ class PlayerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music, container, false)
+        return inflater.inflate(R.layout.fragment_player, container, false)
     }
 }

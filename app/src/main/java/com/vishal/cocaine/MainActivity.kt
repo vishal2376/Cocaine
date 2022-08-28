@@ -3,7 +3,6 @@ package com.vishal.cocaine
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -16,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val favoriteFragment = FavoriteFragment()
-    private val songsFragment = SongsFragment()
+    private val musicFragment = MusicFragment()
     private val playlistFragment = PlaylistFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.itemHome -> loadFragment(homeFragment)
-                R.id.itemSongs -> loadFragment(songsFragment)
+                R.id.itemMusic -> loadFragment(musicFragment)
                 R.id.itemFavorite -> loadFragment(favoriteFragment)
                 R.id.itemPlaylist -> loadFragment(playlistFragment)
             }

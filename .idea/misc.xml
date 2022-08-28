@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_music.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/fragment_player.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_playlist.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_songs.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.35885416666666664" />

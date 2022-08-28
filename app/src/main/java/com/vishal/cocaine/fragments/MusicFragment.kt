@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import com.vishal.cocaine.R
 
 
-class SongsFragment : Fragment() {
+class MusicFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_songs, container, false)
+        return inflater.inflate(R.layout.fragment_music, container, false)
     }
 
 }
