@@ -1,9 +1,9 @@
 package com.vishal.cocaine
 
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.vishal.cocaine.fragments.*
@@ -22,10 +22,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadFragment(playerFragment)
-//        bottomNav.visibility = View.GONE
+        //load home fragment by default
+        loadFragment(homeFragment)
+
+        //request storage permission
         requestRuntimePermissions()
 
+
+        // bottom nav bar
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.itemHome -> loadFragment(homeFragment)
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 
     private fun requestRuntimePermissions() {
         if (ActivityCompat.checkSelfPermission(
