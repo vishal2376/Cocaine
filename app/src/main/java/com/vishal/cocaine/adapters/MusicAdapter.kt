@@ -32,6 +32,8 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
 
         holder.itemView.setOnClickListener {
             val i = Intent(context, PlayerActivity::class.java)
+            i.putExtra("INDEX",position)
+            i.putExtra("CLASS","MusicAdapter")
             context.startActivity(i)
         }
     }
