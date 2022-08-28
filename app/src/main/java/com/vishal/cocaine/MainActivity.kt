@@ -3,6 +3,7 @@ package com.vishal.cocaine
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         loadFragment(playerFragment)
+//        bottomNav.visibility = View.GONE
         requestRuntimePermissions()
 
         bottomNav.setOnNavigationItemSelectedListener {
