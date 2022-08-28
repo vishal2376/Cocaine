@@ -9,5 +9,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="unknown">Unknown</string>
     <string name="playlist">Playlist</string>
+    <string name="artist">Artist</string>
+    <string name="song_name">Song Name</string>
 
 </resources>

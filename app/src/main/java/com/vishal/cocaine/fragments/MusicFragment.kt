@@ -1,6 +1,7 @@
 package com.vishal.cocaine.fragments
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -55,7 +56,8 @@ class MusicFragment : Fragment() {
             MediaStore.Audio.Media.ARTIST,
             MediaStore.Audio.Media.DURATION,
             MediaStore.Audio.Media.DATE_ADDED,
-            MediaStore.Audio.Media.DATA
+            MediaStore.Audio.Media.DATA,
+            MediaStore.Audio.Media.ALBUM_ID
         )
 
         // init cursor
@@ -78,15 +80,21 @@ class MusicFragment : Fragment() {
                     val artistC =
                         cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST))
                     val durationC =
-                        cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION))
+                        cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION))
                     val pathC = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA))
+
+                    // to get song image path
+                    val albumID = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)).toString()
+                    val uri = Uri.parse("content://media/external/audio/albumart")
+                    val artUriC = Uri.withAppendedPath(uri,albumID).toString()
 
                     val song = Song(
                         id = idC,
                         title = titleC,
                         artist = artistC,
                         duration = durationC,
-                        path = pathC
+                        path = pathC,
+                        artUri = artUriC
                     )
 
                     // add data if file exits

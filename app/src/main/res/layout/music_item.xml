@@ -19,10 +19,12 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="15dp"
+            app:cardBackgroundColor="@color/primaryDark"
             app:cardCornerRadius="5dp">
 
             <ImageView
                 android:id="@+id/imgSong"
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/logo" />
@@ -35,25 +37,31 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingStart="5dp">
+            android:orientation="vertical">
 
             <!--            song name-->
             <TextView
                 android:id="@+id/tvSongTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scrollHorizontally="true"
                 android:fontFamily="@font/kollektif"
-                android:text="Song Name"
-                android:textSize="22sp" />
+                android:text="@string/song_name"
+                android:textSize="20sp"
+                android:singleLine="true" />
 
             <!--            artist name-->
             <TextView
                 android:id="@+id/tvSongArtist"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/space"
-                android:text="Artist"
+                android:layout_marginTop="5dp"
+                android:text="@string/artist"
                 android:textSize="14sp" />
 
         </LinearLayout>
