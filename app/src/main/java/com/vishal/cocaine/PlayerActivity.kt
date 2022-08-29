@@ -173,6 +173,9 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
             seekBarPA.progress = 0
             seekBarPA.max = mediaPlayer!!.duration
 
+            // on song complete
+            mediaPlayer!!.setOnCompletionListener(this)
+
         } catch (e: Exception) {
             Toast.makeText(this, "Failed to create Media Player", Toast.LENGTH_SHORT).show()
         }
@@ -184,6 +187,7 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
     }
 
     override fun onCompletion(mediaPlayer: MediaPlayer?) {
+        //run next song after song complete
         changeSong(nextSong = true)
     }
 }
