@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.vishal.cocaine.fragments.MusicFragment
 import com.vishal.cocaine.models.Song
+import com.vishal.cocaine.models.formatDuration
 import kotlinx.android.synthetic.main.activity_player.*
 
 class PlayerActivity : AppCompatActivity() {
@@ -88,6 +89,6 @@ class PlayerActivity : AppCompatActivity() {
     private fun setLayout() {
         tvSongTitlePA.text = songListPA[songPosition].title
         tvSongArtistPA.text = songListPA[songPosition].artist
-        tvSongDurationPA.text = songListPA[songPosition].duration.toString()
+        tvSongDurationPA.text = formatDuration(songListPA[songPosition].duration)
     }
 }
