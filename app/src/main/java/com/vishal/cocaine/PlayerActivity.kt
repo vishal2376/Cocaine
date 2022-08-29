@@ -98,6 +98,15 @@ class PlayerActivity : AppCompatActivity() {
                 createMediaPlayer()
 
             }
+
+            "MusicFragment" -> {
+                songListPA = ArrayList()
+                songListPA.addAll(MusicFragment.songListMF)
+                songListPA.shuffle()
+
+                setLayout()
+                createMediaPlayer()
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 package com.vishal.cocaine.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.R
 import com.vishal.cocaine.adapters.MusicAdapter
 import com.vishal.cocaine.models.Song
@@ -36,6 +38,13 @@ class MusicFragment : Fragment() {
         //load all songs
         songListMF = loadAllSongs()
 
+        //shuffle button
+        fabShuffle.setOnClickListener {
+            val i = Intent(requireContext(),PlayerActivity::class.java)
+            i.putExtra("INDEX",0)
+            i.putExtra("CLASS","MusicFragment")
+            requireContext().startActivity(i)
+        }
 
         //recycler setup
         rvSongsList.layoutManager = LinearLayoutManager(requireContext())

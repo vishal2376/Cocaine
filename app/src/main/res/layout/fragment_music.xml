@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryDark"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".fragments.MusicFragment">
 
- <!--        action bar-->
+    <!--        action bar-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,11 +47,36 @@
 
     </LinearLayout>
 
-<!--    songs list recycler view-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSongsList"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/music_item"/>
+        android:layout_height="match_parent">
+
+
+        <!--    songs list recycler view-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSongsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/music_item" />
+
+        <!--        shuffle song button-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabShuffle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_shuffle"
+            app:backgroundTint="@color/colorAccentDark"
+            app:fabCustomSize="60dp"
+            app:maxImageSize="30dp"
+            tools:ignore="ContentDescription" />
+
+
+    </RelativeLayout>
 
 </LinearLayout>

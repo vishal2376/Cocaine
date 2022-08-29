@@ -23,12 +23,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //load home fragment by default
-//        loadFragment(homeFragment)
-        loadFragment(musicFragment)
-
         //request storage permission
         requestRuntimePermissions()
+
+        //load home fragment by default
+        loadFragment(homeFragment)
 
 
         // bottom nav bar
