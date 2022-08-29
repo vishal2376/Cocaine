@@ -93,6 +93,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kollektif"
                 android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:text="Song Name"
                 android:textColor="@color/text"
                 android:textSize="25sp" />

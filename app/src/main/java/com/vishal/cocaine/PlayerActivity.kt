@@ -10,7 +10,7 @@ import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
 import kotlinx.android.synthetic.main.activity_player.*
 
-class PlayerActivity : AppCompatActivity() {
+class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
 
     companion object {
         lateinit var songListPA: ArrayList<Song>
@@ -25,6 +25,9 @@ class PlayerActivity : AppCompatActivity() {
 
         //init songList and set layout
         initialize()
+
+        //moving title
+        tvSongTitlePA.isSelected = true
 
         //play pause button
         fabPlayPause.setOnClickListener {
@@ -77,12 +80,18 @@ class PlayerActivity : AppCompatActivity() {
         fabPlayPause.setImageResource(R.drawable.ic_play)
         isPlaying = false
         mediaPlayer!!.pause()
+
+        //moving title
+        tvSongTitlePA.isSelected = false
     }
 
     private fun playSong() {
         fabPlayPause.setImageResource(R.drawable.ic_pause)
         isPlaying = true
         mediaPlayer!!.start()
+
+        //moving title
+        tvSongTitlePA.isSelected = true
     }
 
     private fun initialize() {
@@ -132,5 +141,9 @@ class PlayerActivity : AppCompatActivity() {
         tvSongTitlePA.text = songListPA[songPosition].title
         tvSongArtistPA.text = songListPA[songPosition].artist
         tvSongDurationPA.text = formatDuration(songListPA[songPosition].duration)
+    }
+
+    override fun onCompletion(mediaPlayer: MediaPlayer?) {
+        changeSong(nextSong = true)
     }
 }
