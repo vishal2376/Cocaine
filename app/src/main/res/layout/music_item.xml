@@ -51,7 +51,7 @@
                 android:scrollHorizontally="true"
                 android:fontFamily="@font/kollektif"
                 android:text="@string/song_name"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:singleLine="true" />
 
             <!--            artist name-->
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/space"
                 android:layout_marginTop="5dp"
                 android:text="@string/artist"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -76,7 +76,7 @@
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/norwester"
             android:text="00:00"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 
