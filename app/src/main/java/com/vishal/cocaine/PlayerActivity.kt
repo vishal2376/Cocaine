@@ -26,6 +26,7 @@ class PlayerActivity : AppCompatActivity() {
         //init songList and set layout
         initialize()
 
+        //play pause button
         fabPlayPause.setOnClickListener {
             if (isPlaying)
                 pauseSong()
@@ -33,11 +34,43 @@ class PlayerActivity : AppCompatActivity() {
                 playSong()
         }
 
+        //prev and next song button
+        imgPrevious.setOnClickListener {
+            changeSong(nextSong = false)
+        }
+
+        imgNext.setOnClickListener {
+            changeSong(nextSong = true)
+        }
+
+        //back button
         imgBack.setOnClickListener {
-            val i = Intent(this,MainActivity::class.java)
+            val i = Intent(this, MainActivity::class.java)
             startActivity(i)
         }
 
+    }
+
+    private fun changeSong(nextSong: Boolean) {
+        if (nextSong) {
+
+            //checking song position
+            if (songListPA.size - 1 == songPosition)
+                songPosition = 0
+            else
+                songPosition++
+
+        } else {
+            //checking song position
+            if (songPosition == 0)
+                songPosition = songListPA.size - 1
+            else
+                songPosition--
+        }
+
+        // init music player again
+        setLayout()
+        createMediaPlayer()
     }
 
     private fun pauseSong() {

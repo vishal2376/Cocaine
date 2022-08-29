@@ -80,7 +80,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingHorizontal="30dp">
@@ -89,12 +89,13 @@
             <TextView
                 android:id="@+id/tvSongTitlePA"
                 android:layout_width="wrap_content"
+                android:layout_marginHorizontal="10dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kollektif"
                 android:singleLine="true"
                 android:text="Song Name"
                 android:textColor="@color/text"
-                android:textSize="28sp" />
+                android:textSize="25sp" />
 
             <!--        singer name-->
             <TextView
@@ -105,7 +106,7 @@
                 android:fontFamily="@font/space"
                 android:text="@string/unknown"
                 android:textColor="@color/text"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
