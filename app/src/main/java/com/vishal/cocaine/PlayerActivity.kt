@@ -88,5 +88,6 @@ class PlayerActivity : AppCompatActivity() {
     private fun setLayout() {
         tvSongTitlePA.text = songListPA[songPosition].title
         tvSongArtistPA.text = songListPA[songPosition].artist
+        tvSongDurationPA.text = songListPA[songPosition].duration.toString()
     }
 }
