@@ -3,6 +3,9 @@ package com.vishal.cocaine
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.vishal.cocaine.fragments.MusicFragment
@@ -17,6 +20,8 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
         var songPosition: Int = 0
         var mediaPlayer: MediaPlayer? = null
         var isPlaying: Boolean = false
+
+        lateinit var runnable: Runnable
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +50,19 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
         imgNext.setOnClickListener {
             changeSong(nextSong = true)
         }
+
+        //seekbar
+        seekBarPA.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser)
+                    mediaPlayer!!.seekTo(progress)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
+
+        })
 
         //back button
         imgBack.setOnClickListener {
@@ -105,6 +123,7 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
 
                 setLayout()
                 createMediaPlayer()
+                setSeekBar()
 
             }
 
@@ -115,8 +134,23 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
 
                 setLayout()
                 createMediaPlayer()
+                setSeekBar()
             }
         }
+    }
+
+    private fun setSeekBar() {
+
+        runnable = Runnable {
+            tvSeekBarStart.text = formatDuration(mediaPlayer!!.currentPosition.toLong())
+            seekBarPA.progress = mediaPlayer!!.currentPosition
+
+            //increment seekbar with song position
+            Handler(Looper.getMainLooper()).postDelayed(runnable, 1000)
+        }
+
+        // start runnable after 0 millisecond
+        Handler(Looper.getMainLooper()).postDelayed(runnable, 0)
     }
 
     private fun createMediaPlayer() {
@@ -132,6 +166,13 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
             isPlaying = true
             fabPlayPause.setImageResource(R.drawable.ic_pause)
 
+            //seek bar
+            tvSeekBarEnd.text = formatDuration(mediaPlayer!!.currentPosition.toLong())
+            tvSeekBarEnd.text = formatDuration(mediaPlayer!!.duration.toLong())
+
+            seekBarPA.progress = 0
+            seekBarPA.max = mediaPlayer!!.duration
+
         } catch (e: Exception) {
             Toast.makeText(this, "Failed to create Media Player", Toast.LENGTH_SHORT).show()
         }
@@ -140,7 +181,6 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
     private fun setLayout() {
         tvSongTitlePA.text = songListPA[songPosition].title
         tvSongArtistPA.text = songListPA[songPosition].artist
-        tvSongDurationPA.text = formatDuration(songListPA[songPosition].duration)
     }
 
     override fun onCompletion(mediaPlayer: MediaPlayer?) {
