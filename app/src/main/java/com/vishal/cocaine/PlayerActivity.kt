@@ -1,25 +1,29 @@
 package com.vishal.cocaine
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
+import android.os.IBinder
 import android.os.Looper
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.vishal.cocaine.adapters.MusicService
 import com.vishal.cocaine.fragments.MusicFragment
 import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
 import kotlinx.android.synthetic.main.activity_player.*
 
-class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
+class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCompletionListener {
 
     companion object {
         lateinit var songListPA: ArrayList<Song>
         var songPosition: Int = 0
-        var mediaPlayer: MediaPlayer? = null
         var isPlaying: Boolean = false
+        var musicService: MusicService? = null
 
         lateinit var runnable: Runnable
     }
@@ -27,6 +31,11 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
+
+        //start music service
+        val i = Intent(this,PlayerActivity::class.java)
+        bindService(i,this, BIND_AUTO_CREATE)
+        startService(i)
 
         //init songList and set layout
         initialize()
@@ -44,18 +53,18 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
 
         //prev and next song button
         imgPrevious.setOnClickListener {
-            changeSong(nextSong = false)
+//            changeSong(nextSong = false)
         }
 
         imgNext.setOnClickListener {
-            changeSong(nextSong = true)
+//            changeSong(nextSong = true)
         }
 
         //seekbar
         seekBarPA.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser)
-                    mediaPlayer!!.seekTo(progress)
+                    musicService!!.mediaPlayer!!.seekTo(progress)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
@@ -66,8 +75,8 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
 
         //back button
         imgBack.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+            val back = Intent(this, MainActivity::class.java)
+            startActivity(back)
         }
 
     }
@@ -97,7 +106,7 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
     private fun pauseSong() {
         fabPlayPause.setImageResource(R.drawable.ic_play)
         isPlaying = false
-        mediaPlayer!!.pause()
+        musicService!!.mediaPlayer!!.pause()
 
         //moving title
         tvSongTitlePA.isSelected = false
@@ -106,7 +115,7 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
     private fun playSong() {
         fabPlayPause.setImageResource(R.drawable.ic_pause)
         isPlaying = true
-        mediaPlayer!!.start()
+        musicService!!.mediaPlayer!!.start()
 
         //moving title
         tvSongTitlePA.isSelected = true
@@ -122,8 +131,7 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
                 songListPA.addAll(MusicFragment.songListMF)
 
                 setLayout()
-                createMediaPlayer()
-                setSeekBar()
+//                setSeekBar()
 
             }
 
@@ -133,8 +141,7 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
                 songListPA.shuffle()
 
                 setLayout()
-                createMediaPlayer()
-                setSeekBar()
+//                setSeekBar()
             }
         }
     }
@@ -142,8 +149,8 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
     private fun setSeekBar() {
 
         runnable = Runnable {
-            tvSeekBarStart.text = formatDuration(mediaPlayer!!.currentPosition.toLong())
-            seekBarPA.progress = mediaPlayer!!.currentPosition
+            tvSeekBarStart.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
+            seekBarPA.progress = musicService!!.mediaPlayer!!.currentPosition
 
             //increment seekbar with song position
             Handler(Looper.getMainLooper()).postDelayed(runnable, 1000)
@@ -155,26 +162,26 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
 
     private fun createMediaPlayer() {
         try {
-            if (mediaPlayer == null)
-                mediaPlayer = MediaPlayer()
+            if (musicService!!.mediaPlayer == null)
+                musicService!!.mediaPlayer = MediaPlayer()
 
-            mediaPlayer!!.reset()
-            mediaPlayer!!.setDataSource(songListPA[songPosition].path)
-            mediaPlayer!!.prepare()
-            mediaPlayer!!.start()
+            musicService!!.mediaPlayer!!.reset()
+            musicService!!.mediaPlayer!!.setDataSource(songListPA[songPosition].path)
+            musicService!!.mediaPlayer!!.prepare()
+            musicService!!.mediaPlayer!!.start()
 
             isPlaying = true
             fabPlayPause.setImageResource(R.drawable.ic_pause)
 
             //seek bar
-            tvSeekBarEnd.text = formatDuration(mediaPlayer!!.currentPosition.toLong())
-            tvSeekBarEnd.text = formatDuration(mediaPlayer!!.duration.toLong())
+            tvSeekBarEnd.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
+            tvSeekBarEnd.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
 
             seekBarPA.progress = 0
-            seekBarPA.max = mediaPlayer!!.duration
+            seekBarPA.max = musicService!!.mediaPlayer!!.duration
 
             // on song complete
-            mediaPlayer!!.setOnCompletionListener(this)
+            musicService!!.mediaPlayer!!.setOnCompletionListener(this)
 
         } catch (e: Exception) {
             Toast.makeText(this, "Failed to create Media Player", Toast.LENGTH_SHORT).show()
@@ -189,5 +196,15 @@ class PlayerActivity : AppCompatActivity(), MediaPlayer.OnCompletionListener {
     override fun onCompletion(mediaPlayer: MediaPlayer?) {
         //run next song after song complete
         changeSong(nextSong = true)
+    }
+
+    override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+        val binder = service as MusicService.MusicBinder
+        musicService = binder.currentService()
+        createMediaPlayer()
+    }
+
+    override fun onServiceDisconnected(name: ComponentName?) {
+        musicService = null
     }
 }
