@@ -47,6 +47,7 @@
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:focusable="true"
+                android:textColor="@color/text"
                 android:focusableInTouchMode="true"
                 android:scrollHorizontally="true"
                 android:fontFamily="@font/kollektif"
@@ -60,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/space"
+                android:textColor="@color/text"
                 android:layout_marginTop="5dp"
                 android:text="@string/artist"
                 android:textSize="13sp" />
@@ -72,6 +74,7 @@
             android:id="@+id/tvSongDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/text"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/norwester"
