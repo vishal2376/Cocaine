@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="15dp"
+    app:cardBackgroundColor="@color/primary"
+    app:cardCornerRadius="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <!--    song image-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/primaryDark"
+            app:cardCornerRadius="5dp">
+
+            <ImageView
+                android:id="@+id/imgSong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:src="@drawable/logo" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!--        song info-->
+
+        <!--            song name-->
+        <TextView
+            android:id="@+id/tvSongTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/kollektif"
+            android:singleLine="true"
+            android:text="@string/song_name"
+            android:textColor="@color/text"
+            android:textSize="19sp" />
+
+        <!--            artist name-->
+        <TextView
+            android:id="@+id/tvSongArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/space"
+            android:text="@string/artist"
+            android:textColor="@color/text"
+            android:textSize="13sp" />
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
