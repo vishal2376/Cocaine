@@ -1,5 +1,7 @@
 package com.vishal.cocaine.adapters
 
+import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -9,6 +11,7 @@ import android.os.IBinder
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationCompat
 import com.vishal.cocaine.ApplicationClass
+import com.vishal.cocaine.NotificationReceiver
 import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.R
 
@@ -33,7 +36,25 @@ class MusicService : Service() {
         }
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     fun showNotification(){
+
+        //action intents
+
+        val prevIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.PREVIOUS)
+        val prevPendingIntent = PendingIntent.getBroadcast(baseContext,500,prevIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val playIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.PLAY)
+        val playPendingIntent = PendingIntent.getBroadcast(baseContext,500,playIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val nextIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.NEXT)
+        val nextPendingIntent = PendingIntent.getBroadcast(baseContext,500,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val exitIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.EXIT)
+        val exitPendingIntent = PendingIntent.getBroadcast(baseContext,500,exitIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+
+        //building notification
         val notification = NotificationCompat.Builder(baseContext,ApplicationClass.CHANNEL_ID)
             .setContentTitle(PlayerActivity.songListPA[PlayerActivity.songPosition].title)
             .setContentText(PlayerActivity.songListPA[PlayerActivity.songPosition].artist)
@@ -43,10 +64,10 @@ class MusicService : Service() {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)
-            .addAction(R.drawable.ic_skip_previous,"Previous",null)
-            .addAction(R.drawable.ic_play,"Play",null)
-            .addAction(R.drawable.ic_skip_next,"Next",null)
-            .addAction(R.drawable.ic_exit,"Exit",null)
+            .addAction(R.drawable.ic_skip_previous,"Previous",prevPendingIntent)
+            .addAction(R.drawable.ic_play,"Play",playPendingIntent)
+            .addAction(R.drawable.ic_skip_next,"Next",nextPendingIntent)
+            .addAction(R.drawable.ic_exit,"Exit",exitPendingIntent)
             .build()
 
         startForeground(300,notification)
