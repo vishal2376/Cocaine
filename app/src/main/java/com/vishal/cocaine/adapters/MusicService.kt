@@ -45,13 +45,13 @@ class MusicService : Service() {
         val prevPendingIntent = PendingIntent.getBroadcast(baseContext,500,prevIntent,PendingIntent.FLAG_UPDATE_CURRENT)
 
         val playIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.PLAY)
-        val playPendingIntent = PendingIntent.getBroadcast(baseContext,500,playIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+        val playPendingIntent = PendingIntent.getBroadcast(baseContext,600,playIntent,PendingIntent.FLAG_UPDATE_CURRENT)
 
         val nextIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.NEXT)
-        val nextPendingIntent = PendingIntent.getBroadcast(baseContext,500,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+        val nextPendingIntent = PendingIntent.getBroadcast(baseContext,700,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT)
 
         val exitIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.EXIT)
-        val exitPendingIntent = PendingIntent.getBroadcast(baseContext,500,exitIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+        val exitPendingIntent = PendingIntent.getBroadcast(baseContext,800,exitIntent,PendingIntent.FLAG_UPDATE_CURRENT)
 
 
         //building notification

@@ -18,3 +18,9 @@ fun formatDuration(duration: Long): String {
 
     return String.format("%02d:%02d", minutes, seconds)
 }
+
+//fun getImgArt(path: String?): ByteArray? {
+//    val retriever = MediaMetadataRetriever()
+//    retriever.setDataSource(path)
+//    return retriever.embeddedPicture
+//}

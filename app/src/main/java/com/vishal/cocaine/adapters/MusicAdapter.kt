@@ -12,7 +12,8 @@ import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
 import kotlinx.android.synthetic.main.music_item.view.*
 
-class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) : RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
+class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) :
+    RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.music_item, parent, false)
@@ -24,16 +25,24 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
         holder.songArtist.text = songList[position].artist
         holder.songDuration.text = formatDuration(songList[position].duration)
 
-//       commented because not importing correct album art
+//        //get album art
+//        val imgArt = getImgArt(songList[position].path)
+//        val img = if (imgArt != null)
+//            BitmapFactory.decodeByteArray(imgArt, 0, imgArt.size)
+//        else
+//            BitmapFactory.decodeResource(context.resources, R.drawable.logo)
+//
+//        //load img
 //        Glide.with(context)
-//            .load(songList[position].artUri)
+//            .load(img)
+//            .centerCrop()
 //            .apply(RequestOptions().placeholder(R.drawable.logo))
 //            .into(holder.songImg)
 
         holder.itemView.setOnClickListener {
             val i = Intent(context, PlayerActivity::class.java)
-            i.putExtra("INDEX",position)
-            i.putExtra("CLASS","MusicAdapter")
+            i.putExtra("INDEX", position)
+            i.putExtra("CLASS", "MusicAdapter")
             context.startActivity(i)
         }
     }
