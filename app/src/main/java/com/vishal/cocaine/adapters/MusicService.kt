@@ -65,7 +65,7 @@ class MusicService : Service() {
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)
             .addAction(R.drawable.ic_skip_previous,"Previous",prevPendingIntent)
-            .addAction(R.drawable.ic_play,"Play",playPendingIntent)
+            .addAction(R.drawable.ic_pause,"Play",playPendingIntent)
             .addAction(R.drawable.ic_skip_next,"Next",nextPendingIntent)
             .addAction(R.drawable.ic_exit,"Exit",exitPendingIntent)
             .build()

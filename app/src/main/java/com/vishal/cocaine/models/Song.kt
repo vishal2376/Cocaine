@@ -1,5 +1,6 @@
 package com.vishal.cocaine.models
 
+import android.media.MediaMetadataRetriever
 import java.util.concurrent.TimeUnit
 
 data class Song(
@@ -19,8 +20,8 @@ fun formatDuration(duration: Long): String {
     return String.format("%02d:%02d", minutes, seconds)
 }
 
-//fun getImgArt(path: String?): ByteArray? {
-//    val retriever = MediaMetadataRetriever()
-//    retriever.setDataSource(path)
-//    return retriever.embeddedPicture
-//}
+fun getImgArt(path: String?): ByteArray? {
+    val retriever = MediaMetadataRetriever()
+    retriever.setDataSource(path)
+    return retriever.embeddedPicture
+}

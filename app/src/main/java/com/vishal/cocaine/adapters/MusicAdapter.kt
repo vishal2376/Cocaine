@@ -25,6 +25,7 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
         holder.songArtist.text = songList[position].artist
         holder.songDuration.text = formatDuration(songList[position].duration)
 
+        //commented due to lag while scrolling
 //        //get album art
 //        val imgArt = getImgArt(songList[position].path)
 //        val img = if (imgArt != null)
@@ -36,7 +37,7 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
 //        Glide.with(context)
 //            .load(img)
 //            .centerCrop()
-//            .apply(RequestOptions().placeholder(R.drawable.logo))
+////            .apply(RequestOptions().placeholder(R.drawable.logo))
 //            .into(holder.songImg)
 
         holder.itemView.setOnClickListener {

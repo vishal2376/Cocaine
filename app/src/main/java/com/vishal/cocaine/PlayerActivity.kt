@@ -3,6 +3,7 @@ package com.vishal.cocaine
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -11,13 +12,15 @@ import android.os.Looper
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.vishal.cocaine.adapters.MusicService
 import com.vishal.cocaine.fragments.MusicFragment
 import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
+import com.vishal.cocaine.models.getImgArt
 import kotlinx.android.synthetic.main.activity_player.*
 
-class PlayerActivity : AppCompatActivity(), ServiceConnection , MediaPlayer.OnCompletionListener {
+class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCompletionListener {
 
     companion object {
         lateinit var songListPA: ArrayList<Song>
@@ -192,6 +195,22 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection , MediaPlayer.OnCo
     private fun setLayout() {
         tvSongTitlePA.text = songListPA[songPosition].title
         tvSongArtistPA.text = songListPA[songPosition].artist
+
+        //set image
+
+        //get album art
+        val imgArt = getImgArt(songListPA[songPosition].path)
+        val img = if (imgArt != null)
+            BitmapFactory.decodeByteArray(imgArt, 0, imgArt.size)
+        else
+            BitmapFactory.decodeResource(resources, R.drawable.logo)
+
+        //load img
+        Glide.with(this)
+            .load(img)
+            .centerCrop()
+//            .apply(RequestOptions().placeholder(R.drawable.logo))
+            .into(imgCurrentSongPA)
     }
 
     override fun onCompletion(mediaPlayer: MediaPlayer?) {
