@@ -182,7 +182,7 @@
                 android:id="@+id/fabPlayPause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
+                android:layout_marginHorizontal="25dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/ic_play"
