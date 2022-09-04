@@ -62,7 +62,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="300dp"
-            android:layout_marginHorizontal="50dp"
+            android:layout_marginHorizontal="40dp"
             app:cardBackgroundColor="@color/primary"
             app:cardCornerRadius="20dp">
 
@@ -75,39 +75,69 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!--    song info-->
+        <!--     song info + queue + equalizer-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingHorizontal="30dp">
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:gravity="center">
 
-            <!--        song name-->
-            <TextView
-                android:id="@+id/tvSongTitlePA"
-                android:layout_width="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kollektif"
-                android:singleLine="true"
-                android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:text="Song Name"
-                android:textColor="@color/text"
-                android:textSize="25sp" />
+            <!--    equalizer-->
+            <ImageView
+                android:id="@+id/imgEqualizer"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_equalizer"
+                tools:ignore="ContentDescription" />
 
-            <!--        singer name-->
-            <TextView
-                android:id="@+id/tvSongArtistPA"
-                android:layout_width="wrap_content"
+
+            <!--    song info-->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/space"
-                android:text="@string/unknown"
-                android:textColor="@color/text"
-                android:textSize="14sp" />
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="30dp">
+
+                <!--        song name-->
+                <TextView
+                    android:id="@+id/tvSongTitlePA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:ellipsize="marquee"
+                    android:fontFamily="@font/kollektif"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:text="Song Name"
+                    android:textColor="@color/text"
+                    android:textSize="25sp" />
+
+                <!--        singer name-->
+                <TextView
+                    android:id="@+id/tvSongArtistPA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/space"
+                    android:text="@string/unknown"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!--    queue playlist-->
+            <ImageView
+                android:id="@+id/imgQueuePlaylist"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_queue_music"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
@@ -115,7 +145,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginHorizontal="20dp"
             android:gravity="center">
 
@@ -133,9 +162,9 @@
             <SeekBar
                 android:id="@+id/seekBarPA"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
                 android:progressTint="@color/colorAccentDark"
                 android:thumbTint="@color/colorAccentDark" />
 
@@ -151,7 +180,7 @@
 
         </LinearLayout>
 
-        <!--    music player options-->
+        <!--    music player controller-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,8 +193,8 @@
                 android:id="@+id/imgShuffle"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:padding="8dp"
                 android:layout_marginEnd="30dp"
+                android:padding="8dp"
                 android:src="@drawable/ic_shuffle"
                 tools:ignore="ContentDescription" />
 
@@ -204,8 +233,8 @@
                 android:id="@+id/imgRepeat"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:padding="8dp"
                 android:layout_marginStart="30dp"
+                android:padding="8dp"
                 android:src="@drawable/ic_repeat"
                 tools:ignore="ContentDescription" />
 
