@@ -1,24 +1,25 @@
 package com.vishal.cocaine
 
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
-import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
+import android.widget.ImageView
 import android.widget.SeekBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vishal.cocaine.fragments.MusicFragment
 import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
-import com.vishal.cocaine.models.getImgArt
+import com.vishal.cocaine.models.setImgArt
+import com.vishal.cocaine.models.setSongPosition
 import kotlinx.android.synthetic.main.activity_player.*
 
 class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCompletionListener {
@@ -30,7 +31,16 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         var musicService: MusicService? = null
 
         //layout elements
-        lateinit var fabPlayPausePA : FloatingActionButton
+        lateinit var fabPlayPausePA: FloatingActionButton
+
+        @SuppressLint("StaticFieldLeak")
+        lateinit var tvTitlePA: TextView
+
+        @SuppressLint("StaticFieldLeak")
+        lateinit var tvArtistPA: TextView
+
+        @SuppressLint("StaticFieldLeak")
+        lateinit var imgSongPA: ImageView
 
         lateinit var runnable: Runnable
     }
@@ -89,21 +99,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
     }
 
     private fun changeSong(nextSong: Boolean) {
-        if (nextSong) {
-
-            //checking song position
-            if (songListPA.size - 1 == songPosition)
-                songPosition = 0
-            else
-                songPosition++
-
-        } else {
-            //checking song position
-            if (songPosition == 0)
-                songPosition = songListPA.size - 1
-            else
-                songPosition--
-        }
+        setSongPosition(nextSong)
 
         // init music player again
         setLayout()
@@ -134,6 +130,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         //init layout elements
         fabPlayPausePA = fabPlayPause
+        tvTitlePA = tvSongTitlePA
+        tvArtistPA = tvSongArtistPA
+        imgSongPA = imgCurrentSongPA
 
         // init song related var
         songPosition = intent.getIntExtra("INDEX", 0)
@@ -194,6 +193,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             seekBarPA.progress = 0
             seekBarPA.max = musicService!!.mediaPlayer!!.duration
 
+            //show notification
+            musicService!!.showNotification(R.drawable.ic_pause)
+
             // on song complete
             musicService!!.mediaPlayer!!.setOnCompletionListener(this)
 
@@ -207,20 +209,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         tvSongArtistPA.text = songListPA[songPosition].artist
 
         //set image
-
-        //get album art
-        val imgArt = getImgArt(songListPA[songPosition].path)
-        val img = if (imgArt != null)
-            BitmapFactory.decodeByteArray(imgArt, 0, imgArt.size)
-        else
-            BitmapFactory.decodeResource(resources, R.drawable.logo)
-
-        //load img
-        Glide.with(this)
-            .load(img)
-            .centerCrop()
-            .apply(RequestOptions().placeholder(R.drawable.logo))
-            .into(imgCurrentSongPA)
+        setImgArt(this, songListPA[songPosition].path, imgCurrentSongPA)
     }
 
     override fun onCompletion(mediaPlayer: MediaPlayer?) {
@@ -234,8 +223,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         createMediaPlayer()
         setSeekBar()
 
-        //show notification
-        musicService!!.showNotification(R.drawable.ic_pause)
 
     }
 
