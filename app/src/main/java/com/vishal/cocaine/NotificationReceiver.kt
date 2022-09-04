@@ -48,7 +48,7 @@ class NotificationReceiver : BroadcastReceiver() {
 
     private fun pauseMusic() {
         PlayerActivity.isPlaying = false
-        musicService!!.mediaPlayer!!.stop()
+        musicService!!.mediaPlayer!!.pause()
         musicService!!.showNotification(R.drawable.ic_play)
         PlayerActivity.fabPlayPausePA.setImageResource(R.drawable.ic_play)
     }
