@@ -99,8 +99,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         //back button
         imgBack.setOnClickListener {
-            val back = Intent(this, MainActivity::class.java)
-            startActivity(back)
+            finish()
         }
 
         //-------------seekbar change handler------------
