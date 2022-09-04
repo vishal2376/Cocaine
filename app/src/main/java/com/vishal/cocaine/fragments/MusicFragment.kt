@@ -16,11 +16,12 @@ import com.vishal.cocaine.adapters.MusicAdapter
 import com.vishal.cocaine.models.Song
 import kotlinx.android.synthetic.main.fragment_music.*
 import java.io.File
+import kotlin.system.exitProcess
 
 
 class MusicFragment : Fragment() {
 
-    companion object{
+    companion object {
         lateinit var songListMF: ArrayList<Song>
     }
 
@@ -40,9 +41,9 @@ class MusicFragment : Fragment() {
 
         //shuffle button
         fabShuffle.setOnClickListener {
-            val i = Intent(requireContext(),PlayerActivity::class.java)
-            i.putExtra("INDEX",0)
-            i.putExtra("CLASS","MusicFragment")
+            val i = Intent(requireContext(), PlayerActivity::class.java)
+            i.putExtra("INDEX", 0)
+            i.putExtra("CLASS", "MusicFragment")
             requireContext().startActivity(i)
         }
 
@@ -93,9 +94,11 @@ class MusicFragment : Fragment() {
                     val pathC = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA))
 
                     // to get song image path
-                    val albumID = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)).toString()
+                    val albumID =
+                        cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID))
+                            .toString()
                     val uri = Uri.parse("content://media/external/audio/albumart")
-                    val artUriC = Uri.withAppendedPath(uri,albumID).toString()
+                    val artUriC = Uri.withAppendedPath(uri, albumID).toString()
 
                     val song = Song(
                         id = idC,
@@ -108,7 +111,7 @@ class MusicFragment : Fragment() {
 
                     // add data if file exits
                     val file = File(song.path)
-                    if(file.exists())
+                    if (file.exists())
                         tempSongList.add(song)
 
                 } while (cursor.moveToNext())
@@ -116,6 +119,17 @@ class MusicFragment : Fragment() {
             }
 
         return tempSongList
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if (!PlayerActivity.isPlaying && PlayerActivity.musicService != null) {
+            PlayerActivity.musicService!!.stopForeground(true)
+            PlayerActivity.musicService!!.mediaPlayer!!.release()
+            PlayerActivity.musicService = null
+            exitProcess(1)
+        }
     }
 
 }
