@@ -1,4 +1,4 @@
-package com.vishal.cocaine.adapters
+package com.vishal.cocaine
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
@@ -10,10 +10,6 @@ import android.os.Binder
 import android.os.IBinder
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationCompat
-import com.vishal.cocaine.ApplicationClass
-import com.vishal.cocaine.NotificationReceiver
-import com.vishal.cocaine.PlayerActivity
-import com.vishal.cocaine.R
 
 class MusicService : Service() {
 
@@ -31,7 +27,7 @@ class MusicService : Service() {
 
    inner class MusicBinder : Binder() {
 
-        fun currentService():MusicService{
+        fun currentService(): MusicService {
             return this@MusicService
         }
     }

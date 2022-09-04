@@ -38,7 +38,7 @@
             android:name=".MainActivity"
             android:exported="true" />
 
-        <service android:name=".adapters.MusicService" />
+        <service android:name=".MusicService" />
         <receiver android:name=".NotificationReceiver" />
 
     </application>

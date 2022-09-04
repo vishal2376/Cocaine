@@ -13,7 +13,6 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.vishal.cocaine.adapters.MusicService
 import com.vishal.cocaine.fragments.MusicFragment
 import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
