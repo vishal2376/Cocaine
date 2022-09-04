@@ -25,10 +25,15 @@ import kotlinx.android.synthetic.main.activity_player.*
 class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCompletionListener {
 
     companion object {
+        var musicService: MusicService? = null
+        lateinit var runnable: Runnable
+
+        //song data
         lateinit var songListPA: ArrayList<Song>
         var songPosition: Int = 0
+
+        //player behaviour
         var isPlaying: Boolean = false
-        var musicService: MusicService? = null
 
         //layout elements
         lateinit var fabPlayPausePA: FloatingActionButton
@@ -41,8 +46,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         @SuppressLint("StaticFieldLeak")
         lateinit var imgSongPA: ImageView
-
-        lateinit var runnable: Runnable
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,12 +57,10 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         bindService(i, this, BIND_AUTO_CREATE)
         startService(i)
 
-        //init songList and set layout
+        //init layout elements,songListPA array and set layout
         initialize()
 
-        //moving title
-        tvSongTitlePA.isSelected = true
-
+        //---------------------------All Buttons-------------------------
         //play pause button
         fabPlayPause.setOnClickListener {
             if (isPlaying)
@@ -68,16 +69,23 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 playSong()
         }
 
-        //prev and next song button
+        //prev button
         imgPrevious.setOnClickListener {
             changeSong(nextSong = false)
         }
 
+        //next button
         imgNext.setOnClickListener {
             changeSong(nextSong = true)
         }
 
-//        seekbar
+        //back button
+        imgBack.setOnClickListener {
+            val back = Intent(this, MainActivity::class.java)
+            startActivity(back)
+        }
+
+        //-------------seekbar change handler------------
         seekBarPA.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser)
@@ -90,43 +98,13 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         })
 
-        //back button
-        imgBack.setOnClickListener {
-            val back = Intent(this, MainActivity::class.java)
-            startActivity(back)
-        }
-
     }
 
-    private fun changeSong(nextSong: Boolean) {
-        setSongPosition(nextSong)
+    //---------------------------All functions----------------------------
 
-        // init music player again
-        setLayout()
-        createMediaPlayer()
-    }
-
-    private fun pauseSong() {
-        fabPlayPause.setImageResource(R.drawable.ic_play)
-        musicService!!.showNotification(R.drawable.ic_play)
-        isPlaying = false
-        musicService!!.mediaPlayer!!.pause()
-
-        //moving title
-        tvSongTitlePA.isSelected = false
-    }
-
-    private fun playSong() {
-        fabPlayPause.setImageResource(R.drawable.ic_pause)
-        musicService!!.showNotification(R.drawable.ic_pause)
-        isPlaying = true
-        musicService!!.mediaPlayer!!.start()
-
-        //moving title
-        tvSongTitlePA.isSelected = true
-    }
-
+    //initialize
     private fun initialize() {
+
 
         //init layout elements
         fabPlayPausePA = fabPlayPause
@@ -137,13 +115,13 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         // init song related var
         songPosition = intent.getIntExtra("INDEX", 0)
 
+        // init songList according to class
         when (intent.getStringExtra("CLASS")) {
             "MusicAdapter" -> {
                 songListPA = ArrayList()
                 songListPA.addAll(MusicFragment.songListMF)
 
                 setLayout()
-
             }
 
             "MusicFragment" -> {
@@ -152,26 +130,45 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 songListPA.shuffle()
 
                 setLayout()
-
             }
         }
     }
 
-    private fun setSeekBar() {
+    //-------------- Song related functions------------------
+    //change song
+    private fun changeSong(nextSong: Boolean) {
+        setSongPosition(nextSong)
 
-        runnable = Runnable {
-            tvSeekBarStart.text =
-                formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
-            seekBarPA.progress = musicService!!.mediaPlayer!!.currentPosition
-
-            //increment seekbar with song position
-            Handler(Looper.getMainLooper()).postDelayed(runnable, 1000)
-        }
-
-        // start runnable after 0 millisecond
-        Handler(Looper.getMainLooper()).postDelayed(runnable, 0)
+        // init music player again
+        setLayout()
+        createMediaPlayer()
     }
 
+    //play song
+    private fun playSong() {
+        fabPlayPause.setImageResource(R.drawable.ic_pause)
+        musicService!!.showNotification(R.drawable.ic_pause)
+        isPlaying = true
+        musicService!!.mediaPlayer!!.start()
+
+        //moving title
+        tvSongTitlePA.isSelected = true
+    }
+
+    //pause song
+    private fun pauseSong() {
+        fabPlayPause.setImageResource(R.drawable.ic_play)
+        musicService!!.showNotification(R.drawable.ic_play)
+        isPlaying = false
+        musicService!!.mediaPlayer!!.pause()
+
+        //moving title
+        tvSongTitlePA.isSelected = false
+    }
+
+    //------------player setup related functions-------------
+
+    //create music player
     private fun createMediaPlayer() {
         try {
             if (musicService!!.mediaPlayer == null)
@@ -196,7 +193,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             //show notification
             musicService!!.showNotification(R.drawable.ic_pause)
 
-            // on song complete
+            //call 'on song complete' function
             musicService!!.mediaPlayer!!.setOnCompletionListener(this)
 
         } catch (e: Exception) {
@@ -204,26 +201,48 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         }
     }
 
+    //set layout of music player
     private fun setLayout() {
+        //set song info
         tvSongTitlePA.text = songListPA[songPosition].title
         tvSongArtistPA.text = songListPA[songPosition].artist
 
+        //moving title
+        tvSongTitlePA.isSelected = true
+
         //set image
         setImgArt(this, songListPA[songPosition].path, imgCurrentSongPA)
+
     }
 
+    //set seekbar position
+    private fun setSeekBar() {
+
+        runnable = Runnable {
+            tvSeekBarStart.text =
+                formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
+            seekBarPA.progress = musicService!!.mediaPlayer!!.currentPosition
+
+            //increment seekbar with song position
+            Handler(Looper.getMainLooper()).postDelayed(runnable, 1000)
+        }
+
+        // start runnable after 0 millisecond
+        Handler(Looper.getMainLooper()).postDelayed(runnable, 0)
+    }
+
+    //----------------on song completion----------------
     override fun onCompletion(mediaPlayer: MediaPlayer?) {
         //run next song after song complete
         changeSong(nextSong = true)
     }
 
+    //---------------- Music Service functions---------------
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         val binder = service as MusicService.MusicBinder
         musicService = binder.currentService()
         createMediaPlayer()
         setSeekBar()
-
-
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
