@@ -61,7 +61,7 @@ class NotificationReceiver : BroadcastReceiver() {
         musicService!!.mediaPlayer!!.prepare()
 
         tvTitlePA.text = songListPA[songPosition].title
-        tvArtistPA.text = songListPA[songPosition].title
+        tvArtistPA.text = songListPA[songPosition].artist
 
         //set image
         setImgArt(context, songListPA[songPosition].path, imgSongPA)
