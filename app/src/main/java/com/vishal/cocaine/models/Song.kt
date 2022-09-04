@@ -35,6 +35,7 @@ fun getImgArt(path: String?): ByteArray? {
 }
 
 fun setImgArt(context: Context, path: String?, img: ImageView) {
+
     //get album art
     val imgArt = getImgArt(path)
     val imgBitmap = if (imgArt != null)
