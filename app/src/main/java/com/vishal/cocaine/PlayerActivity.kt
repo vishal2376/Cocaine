@@ -13,6 +13,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vishal.cocaine.fragments.MusicFragment
 import com.vishal.cocaine.models.Song
@@ -218,7 +219,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         Glide.with(this)
             .load(img)
             .centerCrop()
-//            .apply(RequestOptions().placeholder(R.drawable.logo))
+            .apply(RequestOptions().placeholder(R.drawable.logo))
             .into(imgCurrentSongPA)
     }
 
