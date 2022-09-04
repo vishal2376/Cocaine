@@ -13,6 +13,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vishal.cocaine.fragments.MusicFragment
 import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
@@ -26,6 +27,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         var songPosition: Int = 0
         var isPlaying: Boolean = false
         var musicService: MusicService? = null
+
+        //layout elements
+        lateinit var fabPlayPausePA : FloatingActionButton
 
         lateinit var runnable: Runnable
     }
@@ -107,6 +111,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
     private fun pauseSong() {
         fabPlayPause.setImageResource(R.drawable.ic_play)
+        musicService!!.showNotification(R.drawable.ic_play)
         isPlaying = false
         musicService!!.mediaPlayer!!.pause()
 
@@ -116,6 +121,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
     private fun playSong() {
         fabPlayPause.setImageResource(R.drawable.ic_pause)
+        musicService!!.showNotification(R.drawable.ic_pause)
         isPlaying = true
         musicService!!.mediaPlayer!!.start()
 
@@ -125,6 +131,10 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
     private fun initialize() {
 
+        //init layout elements
+        fabPlayPausePA = fabPlayPause
+
+        // init song related var
         songPosition = intent.getIntExtra("INDEX", 0)
 
         when (intent.getStringExtra("CLASS")) {
@@ -224,7 +234,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         setSeekBar()
 
         //show notification
-        musicService!!.showNotification()
+        musicService!!.showNotification(R.drawable.ic_pause)
 
     }
 

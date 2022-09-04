@@ -33,7 +33,7 @@ class MusicService : Service() {
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    fun showNotification(){
+    fun showNotification(playPauseBtn:Int){
 
         //action intents
 
@@ -61,7 +61,7 @@ class MusicService : Service() {
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)
             .addAction(R.drawable.ic_skip_previous,"Previous",prevPendingIntent)
-            .addAction(R.drawable.ic_pause,"Play",playPendingIntent)
+            .addAction(playPauseBtn,"Play",playPendingIntent)
             .addAction(R.drawable.ic_skip_next,"Next",nextPendingIntent)
             .addAction(R.drawable.ic_exit,"Exit",exitPendingIntent)
             .build()
