@@ -6,6 +6,7 @@ import android.media.MediaMetadataRetriever
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.PlayerActivity.Companion.songListPA
 import com.vishal.cocaine.PlayerActivity.Companion.songPosition
 import com.vishal.cocaine.R
@@ -53,18 +54,21 @@ fun setImgArt(context: Context, path: String?, img: ImageView) {
 
 
 fun setSongPosition(nextSong: Boolean) {
-    if (nextSong) {
-        //checking song position
-        if (songListPA.size - 1 == songPosition)
-            songPosition = 0
-        else
-            songPosition++
 
-    } else {
-        //checking song position
-        if (songPosition == 0)
-            songPosition = songListPA.size - 1
-        else
-            songPosition--
+    if (!PlayerActivity.isRepeat) {
+        if (nextSong) {
+            //checking song position
+            if (songListPA.size - 1 == songPosition)
+                songPosition = 0
+            else
+                songPosition++
+
+        } else {
+            //checking song position
+            if (songPosition == 0)
+                songPosition = songListPA.size - 1
+            else
+                songPosition--
+        }
     }
 }

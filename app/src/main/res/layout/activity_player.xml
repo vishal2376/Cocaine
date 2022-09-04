@@ -162,8 +162,9 @@
             <!--        shuffle button-->
             <ImageView
                 android:id="@+id/imgShuffle"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
                 android:layout_marginEnd="30dp"
                 android:src="@drawable/ic_shuffle"
                 tools:ignore="ContentDescription" />
@@ -201,8 +202,9 @@
             <!--        next song button-->
             <ImageView
                 android:id="@+id/imgRepeat"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
                 android:layout_marginStart="30dp"
                 android:src="@drawable/ic_repeat"
                 tools:ignore="ContentDescription" />

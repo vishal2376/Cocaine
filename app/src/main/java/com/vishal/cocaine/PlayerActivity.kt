@@ -14,6 +14,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vishal.cocaine.fragments.MusicFragment
 import com.vishal.cocaine.models.Song
@@ -34,6 +35,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         //player behaviour
         var isPlaying: Boolean = false
+        var isRepeat: Boolean = false
 
         //layout elements
         lateinit var fabPlayPausePA: FloatingActionButton
@@ -77,6 +79,22 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         //next button
         imgNext.setOnClickListener {
             changeSong(nextSong = true)
+        }
+
+        //repeat button
+        imgRepeat.setOnClickListener {
+            if (!isRepeat) {
+                isRepeat = true
+                imgRepeat.setColorFilter(ContextCompat.getColor(this, R.color.colorAccentDark))
+            } else {
+                isRepeat = false
+                imgRepeat.setColorFilter(ContextCompat.getColor(this, R.color.text))
+            }
+        }
+
+        //shuffle button
+        imgShuffle.setOnClickListener {
+            Toast.makeText(this, "Implementing soon", Toast.LENGTH_SHORT).show()
         }
 
         //back button
@@ -212,6 +230,15 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         //set image
         setImgArt(this, songListPA[songPosition].path, imgCurrentSongPA)
+
+        //set button colors
+        if (isRepeat)
+            imgRepeat.setColorFilter(
+                ContextCompat.getColor(
+                    this,
+                    R.color.colorAccentDark
+                )
+            )
 
     }
 
