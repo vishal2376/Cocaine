@@ -10,7 +10,6 @@ import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.R
 import com.vishal.cocaine.models.Song
 import com.vishal.cocaine.models.formatDuration
-import com.vishal.cocaine.models.setImgArt
 import kotlinx.android.synthetic.main.music_item.view.*
 
 class FavoriteAdapter(var context: Context, private var songList: ArrayList<Song>) :
@@ -27,7 +26,7 @@ class FavoriteAdapter(var context: Context, private var songList: ArrayList<Song
         holder.songDuration.text = formatDuration(songList[position].duration)
 
         //set image
-         setImgArt(context,songList[position].path,holder.songImg)
+//         setImgArt(context,songList[position].path,holder.songImg)
 
         holder.itemView.setOnClickListener {
             when {
@@ -52,7 +51,7 @@ class FavoriteAdapter(var context: Context, private var songList: ArrayList<Song
     }
 
     class FavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val songImg = itemView.imgSong
+//        val songImg = itemView.imgSong
         val songTitle = itemView.tvSongTitle
         val songArtist = itemView.tvSongArtist
         val songDuration = itemView.tvSongDuration
