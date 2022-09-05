@@ -1,6 +1,7 @@
 package com.vishal.cocaine.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.R
 import com.vishal.cocaine.adapters.MusicAdapter
@@ -36,8 +39,14 @@ class MusicFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //initialize
+        FavoriteFragment.songListFF = ArrayList()
+
         //load all songs
         songListMF = loadAllSongs()
+
+        //load fav songs
+        loadFavSongs()
 
         //shuffle button
         fabShuffle.setOnClickListener {
@@ -50,6 +59,17 @@ class MusicFragment : Fragment() {
         //recycler setup
         rvSongsList.layoutManager = LinearLayoutManager(requireContext())
         rvSongsList.adapter = MusicAdapter(requireContext(), songListMF)
+    }
+
+    private fun loadFavSongs() {
+        //load fav list data using data preferences
+        val editor = requireContext().getSharedPreferences("FAVORITE", Context.MODE_PRIVATE)
+        val jsonString = editor.getString("FavoriteSongs", null)
+        val tokenType = object : TypeToken<ArrayList<Song>>() {}.type
+        if (jsonString != null) {
+            val favData: ArrayList<Song> = GsonBuilder().create().fromJson(jsonString, tokenType)
+            FavoriteFragment.songListFF.addAll(favData)
+        }
     }
 
     @SuppressLint("Recycle", "Range")
@@ -121,6 +141,17 @@ class MusicFragment : Fragment() {
         return tempSongList
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        //store fav list data using data preferences
+        val jsonString = GsonBuilder().create().toJson(FavoriteFragment.songListFF)
+        val editor = requireContext().getSharedPreferences("FAVORITE", Context.MODE_PRIVATE).edit()
+        editor.putString("FavoriteSongs", jsonString)
+        editor.apply()
+    }
+
+    @SuppressLint("CommitPrefEdits")
     override fun onDestroy() {
         super.onDestroy()
 
