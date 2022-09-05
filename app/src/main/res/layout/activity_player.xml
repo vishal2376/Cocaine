@@ -61,7 +61,7 @@
         <!--    song image-->
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             android:layout_marginHorizontal="40dp"
             app:cardBackgroundColor="@color/primary"
             app:cardCornerRadius="20dp">
@@ -79,17 +79,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="20dp"
             android:gravity="center">
 
             <!--    equalizer-->
             <ImageView
                 android:id="@+id/imgEqualizer"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="10dp"
+                android:layout_height="40dp"
+                android:padding="6dp"
                 android:src="@drawable/ic_equalizer"
                 tools:ignore="ContentDescription" />
 
@@ -101,14 +100,14 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingHorizontal="30dp">
+                android:paddingStart="5dp"
+                android:paddingEnd="15dp">
 
                 <!--        song name-->
                 <TextView
                     android:id="@+id/tvSongTitlePA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
                     android:ellipsize="marquee"
                     android:fontFamily="@font/kollektif"
                     android:marqueeRepeatLimit="marquee_forever"
@@ -133,9 +132,10 @@
             <!--    queue playlist-->
             <ImageView
                 android:id="@+id/imgQueuePlaylist"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="8dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="10dp"
+                android:background="@drawable/round_box"
                 android:src="@drawable/ic_queue_music"
                 tools:ignore="ContentDescription" />
 
@@ -145,6 +145,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:layout_marginHorizontal="20dp"
             android:gravity="center">
 
@@ -184,7 +185,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
             android:gravity="center">
 
