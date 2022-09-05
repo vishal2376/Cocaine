@@ -38,6 +38,11 @@ class MusicService : Service() {
     @SuppressLint("UnspecifiedImmutableFlag")
     fun showNotification(playPauseBtn: Int) {
 
+        //on click intent
+        val intent = Intent(baseContext,MainActivity::class.java)
+        val contentIntent = PendingIntent.getActivity(this,0,intent,0)
+
+
         //action intents
 
         val prevIntent = Intent(
@@ -88,6 +93,7 @@ class MusicService : Service() {
 
         //building notification
         val notification = NotificationCompat.Builder(baseContext, ApplicationClass.CHANNEL_ID)
+            .setContentIntent(contentIntent)
             .setContentTitle(songListPA[songPosition].title)
             .setContentText(songListPA[songPosition].artist)
             .setSmallIcon(R.drawable.ic_baseline_music)

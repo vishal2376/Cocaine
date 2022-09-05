@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         //request storage permission
         requestRuntimePermissions()
 
-        //load home fragment by default
-        loadFragment(homeFragment)
+        //load music fragment by default
+        loadFragment(musicFragment)
 
 
         // bottom nav bar
