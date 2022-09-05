@@ -26,19 +26,8 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
         holder.songDuration.text = formatDuration(songList[position].duration)
 
         //commented due to lag while scrolling
-//        //get album art
-//        val imgArt = getImgArt(songList[position].path)
-//        val img = if (imgArt != null)
-//            BitmapFactory.decodeByteArray(imgArt, 0, imgArt.size)
-//        else
-//            BitmapFactory.decodeResource(context.resources, R.drawable.logo)
-//
-//        //load img
-//        Glide.with(context)
-//            .load(img)
-//            .centerCrop()
-////            .apply(RequestOptions().placeholder(R.drawable.logo))
-//            .into(holder.songImg)
+        //set image
+//         setImgArt(context,songList[position].path,holder.imgSong)
 
         holder.itemView.setOnClickListener {
             val i = Intent(context, PlayerActivity::class.java)
@@ -53,7 +42,7 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
     }
 
     class MusicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        val songImg = itemView.imgSong
+        //        val songImg = itemView.imgSong
         val songTitle = itemView.tvSongTitle
         val songArtist = itemView.tvSongArtist
         val songDuration = itemView.tvSongDuration
