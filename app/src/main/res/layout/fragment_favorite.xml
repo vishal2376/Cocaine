@@ -21,7 +21,7 @@
 
         <!--        back button-->
         <ImageView
-            android:id="@+id/imgBack"
+            android:id="@+id/imgBackFF"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:src="@drawable/ic_back"
@@ -33,14 +33,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/norwester"
-            android:text="@string/music"
+            android:text="@string/favorite"
             android:textAlignment="center"
             android:textColor="@color/text"
             android:textSize="30sp" />
 
         <!--        search button-->
         <ImageView
-            android:id="@+id/imgSearch"
+            android:id="@+id/imgSearchFF"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_search"
@@ -55,17 +55,17 @@
 
         <!--    songs list recycler view-->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSongsList"
+            android:id="@+id/rvSongsListFF"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="2dp"
+            android:layout_marginHorizontal="5dp"
             android:scrollbarThumbVertical="@drawable/scroll_line"
             android:scrollbars="vertical"
             tools:listitem="@layout/music_grid_item" />
 
         <!--        shuffle song button-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabShuffle"
+            android:id="@+id/fabShuffleFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

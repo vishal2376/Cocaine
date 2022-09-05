@@ -17,11 +17,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.vishal.cocaine.fragments.FavoriteFragment
 import com.vishal.cocaine.fragments.MusicFragment
-import com.vishal.cocaine.models.Song
-import com.vishal.cocaine.models.formatDuration
-import com.vishal.cocaine.models.setImgArt
-import com.vishal.cocaine.models.setSongPosition
+import com.vishal.cocaine.models.*
 import kotlinx.android.synthetic.main.activity_player.*
 
 class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCompletionListener {
@@ -33,11 +31,13 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         //song data
         lateinit var songListPA: ArrayList<Song>
         var songPosition: Int = 0
-        var nowPlayingID:String = ""
+        var nowPlayingID: String = ""
 
         //player behaviour
         var isPlaying: Boolean = false
         var isRepeat: Boolean = false
+        var isFavorite: Boolean = false
+        var favIndex: Int = -1
 
         //layout elements
         lateinit var fabPlayPausePA: FloatingActionButton
@@ -104,6 +104,21 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             finish()
         }
 
+        //fav button
+        imgFavPA.setOnClickListener {
+            //set fav icon
+            if (isFavorite) {
+                isFavorite = false
+                imgFavPA.setImageResource(R.drawable.ic_favorite)
+                FavoriteFragment.songListFF.removeAt(favIndex)
+            } else {
+                isFavorite = true
+                imgFavPA.setImageResource(R.drawable.ic_baseline_favorite)
+                FavoriteFragment.songListFF.add(songListPA[songPosition])
+            }
+
+        }
+
         //-------------seekbar change handler------------
         seekBarPA.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -145,6 +160,15 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 setLayout()
             }
 
+            "FavoriteAdapter" -> {
+                initMusicService()
+
+                songListPA = ArrayList()
+                songListPA.addAll(FavoriteFragment.songListFF)
+
+                setLayout()
+            }
+
             "MusicFragment" -> {
                 initMusicService()
 
@@ -162,7 +186,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 if (isPlaying)
                     fabPlayPausePA.setImageResource(R.drawable.ic_pause)
                 else
-                   fabPlayPausePA.setImageResource(R.drawable.ic_play)
+                    fabPlayPausePA.setImageResource(R.drawable.ic_play)
 
 
                 //seek bar
@@ -278,6 +302,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
     //set layout of music player
     private fun setLayout() {
+        //set fav index
+        favIndex = checkFavorite(songListPA[songPosition].id)
+
         //set song info
         tvSongTitlePA.text = songListPA[songPosition].title
         tvSongArtistPA.text = songListPA[songPosition].artist
@@ -296,6 +323,13 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                     R.color.colorAccentDark
                 )
             )
+
+        //set fav icon
+        if (isFavorite)
+            imgFavPA.setImageResource(R.drawable.ic_baseline_favorite)
+        else
+            imgFavPA.setImageResource(R.drawable.ic_favorite)
+
 
     }
 

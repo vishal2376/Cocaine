@@ -10,6 +10,7 @@ import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.PlayerActivity.Companion.songListPA
 import com.vishal.cocaine.PlayerActivity.Companion.songPosition
 import com.vishal.cocaine.R
+import com.vishal.cocaine.fragments.FavoriteFragment
 import java.util.concurrent.TimeUnit
 
 data class Song(
@@ -71,4 +72,15 @@ fun setSongPosition(nextSong: Boolean) {
                 songPosition--
         }
     }
+}
+
+fun checkFavorite(id: String): Int {
+    PlayerActivity.isFavorite = false
+    FavoriteFragment.songListFF.forEachIndexed { index, song ->
+        if (id == song.id) {
+            PlayerActivity.isFavorite = true
+            return index
+        }
+    }
+    return -1
 }

@@ -25,7 +25,8 @@
             app:cardCornerRadius="5dp">
 
             <ImageView
-                android:id="@+id/imgSong"
+                android:id="@+id/imgSongG"
+            android:padding="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/logo" />
@@ -36,7 +37,7 @@
 
         <!--            song name-->
         <TextView
-            android:id="@+id/tvSongTitle"
+            android:id="@+id/tvSongTitleG"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -49,7 +50,7 @@
 
         <!--            artist name-->
         <TextView
-            android:id="@+id/tvSongArtist"
+            android:id="@+id/tvSongArtistG"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

@@ -57,9 +57,9 @@
             android:id="@+id/rvSongsList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="2dp"
             android:scrollbarThumbVertical="@drawable/scroll_line"
             android:scrollbars="vertical"
-            android:layout_marginHorizontal="2dp"
             tools:listitem="@layout/music_item" />
 
         <!--        shuffle song button-->

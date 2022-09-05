@@ -41,7 +41,7 @@
 
         <!--        like button-->
         <ImageView
-            android:id="@+id/imgLikePA"
+            android:id="@+id/imgFavPA"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="12dp"
