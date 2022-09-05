@@ -5,6 +5,7 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
 import android.media.MediaPlayer
+import android.media.audiofx.AudioEffect
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
@@ -63,6 +64,11 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         initialize()
 
         //---------------------------All Buttons-------------------------
+        //equalizer button
+        imgEqualizer.setOnClickListener {
+            gotoEqualizer()
+        }
+
         //play pause button
         fabPlayPause.setOnClickListener {
             if (isPlaying)
@@ -183,6 +189,27 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         tvSongTitlePA.isSelected = false
     }
 
+    // open equalizer
+    private fun gotoEqualizer() {
+        try{
+                val equalizerIntent = Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL)
+                equalizerIntent.putExtra(
+                    AudioEffect.EXTRA_AUDIO_SESSION,
+                    musicService!!.mediaPlayer!!.audioSessionId
+                )
+                equalizerIntent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, baseContext.packageName)
+                equalizerIntent.putExtra(
+                    AudioEffect.EXTRA_CONTENT_TYPE,
+                    AudioEffect.CONTENT_TYPE_MUSIC
+                )
+
+                startActivityForResult(equalizerIntent, 10)
+
+            }catch (e:Exception){
+                Toast.makeText(this,"Equalizer feature not supported",Toast.LENGTH_SHORT).show()
+            }
+    }
+
     //------------player setup related functions-------------
 
     //create music player
@@ -273,5 +300,16 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
     override fun onServiceDisconnected(name: ComponentName?) {
         musicService = null
+    }
+
+    //------------------- Activity Result-------------------
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //checking for equalizer
+        if(resultCode == 10 && resultCode == RESULT_OK)
+            return
+
     }
 }
