@@ -66,7 +66,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         //---------------------------All Buttons-------------------------
         //equalizer button
         imgEqualizer.setOnClickListener {
-            gotoEqualizer()
+            openEqualizer()
         }
 
         //play pause button
@@ -190,7 +190,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
     }
 
     // open equalizer
-    private fun gotoEqualizer() {
+    private fun openEqualizer() {
         try{
                 val equalizerIntent = Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL)
                 equalizerIntent.putExtra(
