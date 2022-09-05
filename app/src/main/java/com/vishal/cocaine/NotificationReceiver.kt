@@ -9,6 +9,7 @@ import com.vishal.cocaine.PlayerActivity.Companion.songListPA
 import com.vishal.cocaine.PlayerActivity.Companion.songPosition
 import com.vishal.cocaine.PlayerActivity.Companion.tvArtistPA
 import com.vishal.cocaine.PlayerActivity.Companion.tvTitlePA
+import com.vishal.cocaine.fragments.NowPlayingFragment
 import com.vishal.cocaine.models.setImgArt
 import com.vishal.cocaine.models.setSongPosition
 import kotlin.system.exitProcess
@@ -45,6 +46,7 @@ class NotificationReceiver : BroadcastReceiver() {
         musicService!!.mediaPlayer!!.start()
         musicService!!.showNotification(R.drawable.ic_pause)
         PlayerActivity.fabPlayPausePA.setImageResource(R.drawable.ic_pause)
+        NowPlayingFragment.binding.imgPlayPauseNP.setImageResource(R.drawable.ic_pause)
     }
 
     private fun pauseMusic() {
@@ -52,6 +54,7 @@ class NotificationReceiver : BroadcastReceiver() {
         musicService!!.mediaPlayer!!.pause()
         musicService!!.showNotification(R.drawable.ic_play)
         PlayerActivity.fabPlayPausePA.setImageResource(R.drawable.ic_play)
+        NowPlayingFragment.binding.imgPlayPauseNP.setImageResource(R.drawable.ic_play)
     }
 
     private fun changeSong(nextSong: Boolean, context: Context) {
