@@ -157,7 +157,12 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             "NowPlaying" -> {
                 setLayout()
 
-                fabPlayPause.setImageResource(R.drawable.ic_pause)
+                //set play pause icon
+                if (isPlaying)
+                    fabPlayPausePA.setImageResource(R.drawable.ic_pause)
+                else
+                   fabPlayPausePA.setImageResource(R.drawable.ic_play)
+
 
                 //seek bar
                 tvSeekBarEnd.text =
