@@ -50,6 +50,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         @SuppressLint("StaticFieldLeak")
         lateinit var imgSongPA: ImageView
+
+        @SuppressLint("StaticFieldLeak")
+        lateinit var imgFavoritePA: ImageView
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -145,6 +148,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         tvTitlePA = tvSongTitlePA
         tvArtistPA = tvSongArtistPA
         imgSongPA = imgCurrentSongPA
+        imgFavoritePA = imgFavPA
 
         // init song related var
         songPosition = intent.getIntExtra("INDEX", 0)
