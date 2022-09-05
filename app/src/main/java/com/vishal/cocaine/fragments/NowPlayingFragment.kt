@@ -2,6 +2,7 @@ package com.vishal.cocaine.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.PlayerActivity.Companion.isPlaying
 import com.vishal.cocaine.PlayerActivity.Companion.musicService
+import com.vishal.cocaine.PlayerActivity.Companion.nowPlayingID
 import com.vishal.cocaine.PlayerActivity.Companion.songListPA
 import com.vishal.cocaine.PlayerActivity.Companion.songPosition
 import com.vishal.cocaine.R
@@ -121,9 +123,15 @@ class NowPlayingFragment : Fragment() {
         setSongPosition(nextSong)
 
         //setup music player
+        if (musicService!!.mediaPlayer == null)
+            musicService!!.mediaPlayer = MediaPlayer()
+
         musicService!!.mediaPlayer!!.reset()
         musicService!!.mediaPlayer!!.setDataSource(songListPA[songPosition].path)
         musicService!!.mediaPlayer!!.prepare()
+
+        //set song id
+        nowPlayingID = songListPA[songPosition].id
 
         //set layout
         setLayoutNP()

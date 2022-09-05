@@ -30,11 +30,21 @@ class MusicAdapter(var context: Context, private var songList: ArrayList<Song>) 
 //         setImgArt(context,songList[position].path,holder.imgSong)
 
         holder.itemView.setOnClickListener {
-            val i = Intent(context, PlayerActivity::class.java)
-            i.putExtra("INDEX", position)
-            i.putExtra("CLASS", "MusicAdapter")
-            context.startActivity(i)
+            when {
+                songList[position].id == PlayerActivity.nowPlayingID -> {
+                    sendIntent("NowPlaying",PlayerActivity.songPosition)
+                }
+                else -> sendIntent("MusicAdapter", position)
+            }
+
         }
+    }
+
+    private fun sendIntent(ref: String, pos: Int) {
+        val i = Intent(context, PlayerActivity::class.java)
+        i.putExtra("INDEX", pos)
+        i.putExtra("CLASS", ref)
+        context.startActivity(i)
     }
 
     override fun getItemCount(): Int {

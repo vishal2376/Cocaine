@@ -33,6 +33,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         //song data
         lateinit var songListPA: ArrayList<Song>
         var songPosition: Int = 0
+        var nowPlayingID:String = ""
 
         //player behaviour
         var isPlaying: Boolean = false
@@ -252,6 +253,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
             isPlaying = true
             fabPlayPause.setImageResource(R.drawable.ic_pause)
+
+            //set song id
+            nowPlayingID = songListPA[songPosition].id
 
             //seek bar
             tvSeekBarEnd.text =
