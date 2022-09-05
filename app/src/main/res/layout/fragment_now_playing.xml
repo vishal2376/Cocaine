@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="10dp"
+        tools:ignore="UselessParent">
 
         <!--    song image-->
         <androidx.cardview.widget.CardView

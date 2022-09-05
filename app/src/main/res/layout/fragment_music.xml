@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/norwester"
-            android:text="Music"
+            android:text="@string/music"
             android:textAlignment="center"
             android:textColor="@color/text"
             android:textSize="30sp" />
