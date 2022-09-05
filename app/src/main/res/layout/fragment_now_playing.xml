@@ -59,7 +59,7 @@
             android:id="@+id/imgNextNP"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:padding="10dp"
             android:src="@drawable/ic_skip_next"
             tools:ignore="ContentDescription" />

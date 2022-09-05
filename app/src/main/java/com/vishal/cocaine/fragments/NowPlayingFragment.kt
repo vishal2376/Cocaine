@@ -1,11 +1,13 @@
 package com.vishal.cocaine.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.PlayerActivity.Companion.isPlaying
 import com.vishal.cocaine.PlayerActivity.Companion.musicService
 import com.vishal.cocaine.PlayerActivity.Companion.songListPA
@@ -32,6 +34,14 @@ class NowPlayingFragment : Fragment() {
         binding.root.visibility = View.GONE
 
         //----------------All Buttons-------------------
+
+        //click on now playing layout
+        binding.root.setOnClickListener {
+            val i = Intent(context, PlayerActivity::class.java)
+            i.putExtra("INDEX", songPosition)
+            i.putExtra("CLASS", "NowPlaying")
+            startActivity(i)
+        }
 
         //play pause button
         binding.imgPlayPauseNP.setOnClickListener {

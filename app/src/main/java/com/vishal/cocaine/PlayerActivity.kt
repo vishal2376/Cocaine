@@ -55,11 +55,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
 
-        //start music service
-        val i = Intent(this, MusicService::class.java)
-        bindService(i, this, BIND_AUTO_CREATE)
-        startService(i)
-
         //init layout elements,songListPA array and set layout
         initialize()
 
@@ -141,6 +136,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         // init songList according to class
         when (intent.getStringExtra("CLASS")) {
             "MusicAdapter" -> {
+                initMusicService()
+
                 songListPA = ArrayList()
                 songListPA.addAll(MusicFragment.songListMF)
 
@@ -148,13 +145,38 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             }
 
             "MusicFragment" -> {
+                initMusicService()
+
                 songListPA = ArrayList()
                 songListPA.addAll(MusicFragment.songListMF)
                 songListPA.shuffle()
 
                 setLayout()
             }
+
+            "NowPlaying" -> {
+                setLayout()
+
+                fabPlayPause.setImageResource(R.drawable.ic_pause)
+
+                //seek bar
+                tvSeekBarEnd.text =
+                    formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
+                tvSeekBarEnd.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
+
+                seekBarPA.progress = musicService!!.mediaPlayer!!.currentPosition
+                seekBarPA.max = musicService!!.mediaPlayer!!.duration
+
+                setSeekBar()
+            }
         }
+    }
+
+    //---------------Start Music Services---------------------
+    private fun initMusicService() {
+        val i = Intent(this, MusicService::class.java)
+        bindService(i, this, BIND_AUTO_CREATE)
+        startService(i)
     }
 
     //-------------- Song related functions------------------
@@ -191,23 +213,23 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
     // open equalizer
     private fun openEqualizer() {
-        try{
-                val equalizerIntent = Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL)
-                equalizerIntent.putExtra(
-                    AudioEffect.EXTRA_AUDIO_SESSION,
-                    musicService!!.mediaPlayer!!.audioSessionId
-                )
-                equalizerIntent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, baseContext.packageName)
-                equalizerIntent.putExtra(
-                    AudioEffect.EXTRA_CONTENT_TYPE,
-                    AudioEffect.CONTENT_TYPE_MUSIC
-                )
+        try {
+            val equalizerIntent = Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL)
+            equalizerIntent.putExtra(
+                AudioEffect.EXTRA_AUDIO_SESSION,
+                musicService!!.mediaPlayer!!.audioSessionId
+            )
+            equalizerIntent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, baseContext.packageName)
+            equalizerIntent.putExtra(
+                AudioEffect.EXTRA_CONTENT_TYPE,
+                AudioEffect.CONTENT_TYPE_MUSIC
+            )
 
-                startActivityForResult(equalizerIntent, 10)
+            startActivityForResult(equalizerIntent, 10)
 
-            }catch (e:Exception){
-                Toast.makeText(this,"Equalizer feature not supported",Toast.LENGTH_SHORT).show()
-            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Equalizer feature not supported", Toast.LENGTH_SHORT).show()
+        }
     }
 
     //------------player setup related functions-------------
@@ -308,7 +330,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         super.onActivityResult(requestCode, resultCode, data)
 
         //checking for equalizer
-        if(resultCode == 10 && resultCode == RESULT_OK)
+        if (resultCode == 10 && resultCode == RESULT_OK)
             return
 
     }
