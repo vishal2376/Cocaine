@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.PlayerActivity.Companion.isPlaying
 import com.vishal.cocaine.PlayerActivity.Companion.musicService
+import com.vishal.cocaine.PlayerActivity.Companion.songListPA
+import com.vishal.cocaine.PlayerActivity.Companion.songPosition
 import com.vishal.cocaine.R
 import com.vishal.cocaine.databinding.FragmentNowPlayingBinding
 import com.vishal.cocaine.models.setImgArt
+import com.vishal.cocaine.models.setSongPosition
 import kotlinx.android.synthetic.main.fragment_now_playing.*
 
 class NowPlayingFragment : Fragment() {
@@ -41,7 +43,7 @@ class NowPlayingFragment : Fragment() {
 
         //next button
         binding.imgNextNP.setOnClickListener {
-
+            changeSong(nextSong = true)
         }
 
         return view
@@ -62,13 +64,13 @@ class NowPlayingFragment : Fragment() {
 
         //song image
         setImgArt(
-            requireContext(), PlayerActivity.songListPA[PlayerActivity.songPosition].path,
+            requireContext(), songListPA[songPosition].path,
             binding.imgCurrentSongNP
         )
 
         //song title
         binding.tvSongTitleNP.text =
-            PlayerActivity.songListPA[PlayerActivity.songPosition].title
+            songListPA[songPosition].title
 
         //moving title
         tvSongTitleNP.isSelected = true
@@ -102,5 +104,21 @@ class NowPlayingFragment : Fragment() {
 
         //moving title
         binding.tvSongTitleNP.isSelected = false
+    }
+
+    //change song
+    private fun changeSong(nextSong: Boolean) {
+        setSongPosition(nextSong)
+
+        //setup music player
+        musicService!!.mediaPlayer!!.reset()
+        musicService!!.mediaPlayer!!.setDataSource(songListPA[songPosition].path)
+        musicService!!.mediaPlayer!!.prepare()
+
+        //set layout
+        setLayoutNP()
+
+        //play song
+        playSong()
     }
 }
