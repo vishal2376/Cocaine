@@ -20,7 +20,7 @@
         android:id="@+id/nowPlayingContainer"
         android:name="com.vishal.cocaine.fragments.NowPlayingFragment"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_above="@id/bottomNav"
         tools:layout="@layout/fragment_now_playing" />
 

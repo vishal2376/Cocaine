@@ -25,7 +25,7 @@ class NowPlayingFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_now_playing, container, false)
         binding = FragmentNowPlayingBinding.bind(view)
-        binding.root.visibility = View.INVISIBLE
+        binding.root.visibility = View.GONE
         return view
     }
 
