@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="60dp"
+    android:elevation="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/round_border_box"
     tools:context=".fragments.NowPlayingFragment">
@@ -16,10 +17,11 @@
 
         <!--    song image-->
         <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:cardBackgroundColor="@color/primary"
-            app:cardCornerRadius="5dp">
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp">
 
             <ImageView
                 android:id="@+id/imgCurrentSongNP"
@@ -43,13 +45,13 @@
             android:singleLine="true"
             android:text="@string/song_name"
             android:textColor="@color/text"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <!--        play song button-->
         <ImageView
             android:id="@+id/imgPlayPauseNP"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:padding="10dp"
             android:src="@drawable/ic_pause"
             tools:ignore="ContentDescription" />
@@ -57,8 +59,8 @@
         <!--        next song button-->
         <ImageView
             android:id="@+id/imgNextNP"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginStart="5dp"
             android:padding="10dp"
             android:src="@drawable/ic_skip_next"

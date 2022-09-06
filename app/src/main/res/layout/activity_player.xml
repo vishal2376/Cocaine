@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="25dp"
             android:gravity="center">
 
             <!--    equalizer-->
@@ -134,8 +134,7 @@
                 android:id="@+id/imgQueuePlaylist"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:padding="10dp"
-                android:background="@drawable/round_box"
+                android:padding="7dp"
                 android:src="@drawable/ic_queue_music"
                 tools:ignore="ContentDescription" />
 
@@ -195,7 +194,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="30dp"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_shuffle"
                 tools:ignore="ContentDescription" />
 
@@ -203,6 +202,7 @@
             <ImageView
                 android:id="@+id/imgPrevious"
                 android:layout_width="40dp"
+                android:padding="5dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_skip_previous"
                 tools:ignore="ContentDescription" />
@@ -226,6 +226,7 @@
                 android:id="@+id/imgNext"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_skip_next"
                 tools:ignore="ContentDescription" />
 
@@ -235,7 +236,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="30dp"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_repeat"
                 tools:ignore="ContentDescription" />
 
