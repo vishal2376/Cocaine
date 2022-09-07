@@ -9,6 +9,8 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
@@ -57,8 +59,19 @@ class MusicFragment : Fragment() {
         }
 
         //recycler setup
+        setSongRecycler()
+    }
+
+    private fun setSongRecycler() {
+
         rvSongsList.layoutManager = LinearLayoutManager(requireContext())
         rvSongsList.adapter = MusicAdapter(requireContext(), songListMF)
+
+        val songListAnim = LayoutAnimationController(AnimationUtils.loadAnimation(requireContext(),R.anim.slide_up_anim))
+        songListAnim.delay = 0.2f
+        songListAnim.order = LayoutAnimationController.ORDER_NORMAL
+        rvSongsList.layoutAnimation = songListAnim
+
     }
 
     private fun loadFavSongs() {

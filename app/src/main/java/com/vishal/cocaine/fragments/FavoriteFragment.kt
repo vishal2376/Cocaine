@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vishal.cocaine.R
-import com.vishal.cocaine.adapters.FavoriteAdapter
+import com.vishal.cocaine.adapters.MusicAdapter
 import com.vishal.cocaine.models.Song
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
@@ -31,8 +33,25 @@ class FavoriteFragment : Fragment() {
 
 
         //recycler setup
-        rvSongsListFF.layoutManager = LinearLayoutManager(requireContext())
-        rvSongsListFF.adapter = FavoriteAdapter(requireContext(), songListFF)
+        setSongRecycler()
 
     }
+
+    private fun setSongRecycler() {
+
+        rvSongsListFF.layoutManager = LinearLayoutManager(requireContext())
+        rvSongsListFF.adapter = MusicAdapter(requireContext(), songListFF)
+
+        val songListAnim = LayoutAnimationController(
+            AnimationUtils.loadAnimation(
+                requireContext(),
+                R.anim.slide_up_anim
+            )
+        )
+        songListAnim.delay = 0.2f
+        songListAnim.order = LayoutAnimationController.ORDER_NORMAL
+        rvSongsListFF.layoutAnimation = songListAnim
+
+    }
+
 }
