@@ -31,6 +31,8 @@ Cocaine is A Music Player App made in Kotlin Language.
  - Play songs from Local Storage
  - Fetch all songs automatically
  - Shuffle songs
+ - Add Favorite Songs
+ - Playlist
 
 
 ## More projects :
