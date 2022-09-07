@@ -321,6 +321,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         //set image
         setImgArt(this, songListPA[songPosition].path, imgCurrentSongPA)
 
+        //set blurry background
+        setBlurImgArt(this, songListPA[songPosition].path,backgroundPA)
+
         //set button colors
         if (isRepeat)
             imgRepeat.setColorFilter(

@@ -1,246 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryDark"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
     tools:context=".PlayerActivity">
 
-    <!--        action bar-->
-    <LinearLayout
+    <!--        blurry background        -->
+    <ImageView
+        android:id="@+id/backgroundPA"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="25dp"
-        android:paddingVertical="10dp">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
-        <!--        back button-->
-        <ImageView
-            android:id="@+id/imgBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="12dp"
-            android:src="@drawable/ic_back"
-            tools:ignore="ContentDescription" />
-
-        <!--        title-->
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/norwester"
-            android:text="@string/music"
-            android:textAlignment="center"
-            android:textColor="@color/text"
-            android:textSize="30sp" />
-
-        <!--        like button-->
-        <ImageView
-            android:id="@+id/imgFavPA"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="12dp"
-            android:src="@drawable/ic_favorite"
-            tools:ignore="ContentDescription" />
-
-    </LinearLayout>
-
-    <!--    player container-->
+    <!--    player layout-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:background="@color/primaryTransparent"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
-
-        <!--    song image-->
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="350dp"
-            android:layout_marginHorizontal="40dp"
-            app:cardBackgroundColor="@color/primary"
-            app:cardCornerRadius="20dp">
-
-            <ImageView
-                android:id="@+id/imgCurrentSongPA"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/logo"
-                tools:ignore="ContentDescription" />
-
-        </androidx.cardview.widget.CardView>
-
-        <!--     song info + queue + equalizer-->
+        <!--        action bar-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginHorizontal="25dp"
-            android:gravity="center">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="10dp">
 
-            <!--    equalizer-->
+            <!--        back button-->
             <ImageView
-                android:id="@+id/imgEqualizer"
+                android:id="@+id/imgBack"
                 android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:padding="6dp"
-                android:src="@drawable/ic_equalizer"
+                android:layout_height="50dp"
+                android:padding="12dp"
+                android:src="@drawable/ic_back"
                 tools:ignore="ContentDescription" />
 
-
-            <!--    song info-->
-            <LinearLayout
+            <!--        title-->
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingStart="5dp"
-                android:paddingEnd="15dp">
+                android:fontFamily="@font/norwester"
+                android:text="@string/music"
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="30sp" />
 
-                <!--        song name-->
-                <TextView
-                    android:id="@+id/tvSongTitlePA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="marquee"
-                    android:fontFamily="@font/kollektif"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:singleLine="true"
-                    android:text="@string/song_name"
-                    android:textColor="@color/text"
-                    android:textSize="25sp" />
+            <!--        like button-->
+            <ImageView
+                android:id="@+id/imgFavPA"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="12dp"
+                android:src="@drawable/ic_favorite"
+                tools:ignore="ContentDescription" />
 
-                <!--        singer name-->
-                <TextView
-                    android:id="@+id/tvSongArtistPA"
-                    android:layout_width="wrap_content"
+        </LinearLayout>
+
+
+        <!--    player container-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--    song image-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="350dp"
+                android:layout_marginHorizontal="40dp"
+                app:cardBackgroundColor="@color/primary"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/imgCurrentSongPA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/logo"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!--     song info + queue + equalizer-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:gravity="center">
+
+                <!--    equalizer-->
+                <ImageView
+                    android:id="@+id/imgEqualizer"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_equalizer"
+                    tools:ignore="ContentDescription" />
+
+
+                <!--    song info-->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/space"
-                    android:text="@string/unknown"
-                    android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="15dp">
+
+                    <!--        song name-->
+                    <TextView
+                        android:id="@+id/tvSongTitlePA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="marquee"
+                        android:fontFamily="@font/kollektif"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
+                        android:text="@string/song_name"
+                        android:textColor="@color/text"
+                        android:textSize="25sp" />
+
+                    <!--        singer name-->
+                    <TextView
+                        android:id="@+id/tvSongArtistPA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/space"
+                        android:text="@string/unknown"
+                        android:textColor="@color/text"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <!--    queue playlist-->
+                <ImageView
+                    android:id="@+id/imgQueuePlaylist"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_queue_music"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
-            <!--    queue playlist-->
-            <ImageView
-                android:id="@+id/imgQueuePlaylist"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:padding="7dp"
-                android:src="@drawable/ic_queue_music"
-                tools:ignore="ContentDescription" />
+            <!--    seek bar with duration -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center">
 
+                <!--        current duration of song-->
+                <TextView
+                    android:id="@+id/tvSeekBarStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/norwester"
+                    android:text="@string/time_stamp"
+                    android:textColor="@color/text"
+                    android:textSize="15sp" />
+
+                <!--        seek bar-->
+                <SeekBar
+                    android:id="@+id/seekBarPA"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:progressTint="@color/colorAccentDark"
+                    android:thumbTint="@color/colorAccentDark" />
+
+                <!--        total duration of song-->
+                <TextView
+                    android:id="@+id/tvSeekBarEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/norwester"
+                    android:text="@string/time_stamp"
+                    android:textColor="@color/text"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <!--    music player controller-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center">
+
+                <!--        shuffle button-->
+                <ImageView
+                    android:id="@+id/imgShuffle"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="30dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_shuffle"
+                    tools:ignore="ContentDescription" />
+
+                <!--        previous song button-->
+                <ImageView
+                    android:id="@+id/imgPrevious"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_skip_previous"
+                    tools:ignore="ContentDescription" />
+
+                <!--        play and pause song button-->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabPlayPause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_play"
+                    app:backgroundTint="@color/colorAccentDark"
+                    app:fabCustomSize="70dp"
+                    app:maxImageSize="40dp"
+                    tools:ignore="ContentDescription" />
+
+                <!--        next song button-->
+                <ImageView
+                    android:id="@+id/imgNext"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_skip_next"
+                    tools:ignore="ContentDescription" />
+
+                <!--        next song button-->
+                <ImageView
+                    android:id="@+id/imgRepeat"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="30dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_repeat"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
         </LinearLayout>
 
-        <!--    seek bar with duration -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="20dp"
-            android:gravity="center">
-
-            <!--        current duration of song-->
-            <TextView
-                android:id="@+id/tvSeekBarStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/norwester"
-                android:text="@string/time_stamp"
-                android:textColor="@color/text"
-                android:textSize="15sp" />
-
-            <!--        seek bar-->
-            <SeekBar
-                android:id="@+id/seekBarPA"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:progressTint="@color/colorAccentDark"
-                android:thumbTint="@color/colorAccentDark" />
-
-            <!--        total duration of song-->
-            <TextView
-                android:id="@+id/tvSeekBarEnd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/norwester"
-                android:text="@string/time_stamp"
-                android:textColor="@color/text"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <!--    music player controller-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:gravity="center">
-
-            <!--        shuffle button-->
-            <ImageView
-                android:id="@+id/imgShuffle"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="30dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_shuffle"
-                tools:ignore="ContentDescription" />
-
-            <!--        previous song button-->
-            <ImageView
-                android:id="@+id/imgPrevious"
-                android:layout_width="40dp"
-                android:padding="5dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_skip_previous"
-                tools:ignore="ContentDescription" />
-
-            <!--        play and pause song button-->
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabPlayPause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/ic_play"
-                app:backgroundTint="@color/colorAccentDark"
-                app:fabCustomSize="70dp"
-                app:maxImageSize="40dp"
-                tools:ignore="ContentDescription" />
-
-            <!--        next song button-->
-            <ImageView
-                android:id="@+id/imgNext"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_skip_next"
-                tools:ignore="ContentDescription" />
-
-            <!--        next song button-->
-            <ImageView
-                android:id="@+id/imgRepeat"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="30dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_repeat"
-                tools:ignore="ContentDescription" />
-
-        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

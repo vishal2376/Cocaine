@@ -11,6 +11,7 @@ import com.vishal.cocaine.PlayerActivity.Companion.songListPA
 import com.vishal.cocaine.PlayerActivity.Companion.songPosition
 import com.vishal.cocaine.R
 import com.vishal.cocaine.fragments.FavoriteFragment
+import jp.wasabeef.blurry.Blurry
 import java.util.concurrent.TimeUnit
 
 data class Song(
@@ -51,6 +52,19 @@ fun setImgArt(context: Context, path: String?, img: ImageView) {
         .centerCrop()
         .apply(RequestOptions().placeholder(R.drawable.logo))
         .into(img)
+}
+
+fun setBlurImgArt(context: Context, path: String?, img: ImageView) {
+
+    //get album art
+    val imgArt = getImgArt(path)
+    val imgBitmap = if (imgArt != null)
+        BitmapFactory.decodeByteArray(imgArt, 0, imgArt.size)
+    else
+        BitmapFactory.decodeResource(context.resources, R.drawable.logo)
+
+    //load img
+    Blurry.with(context).from(imgBitmap).into(img)
 }
 
 
