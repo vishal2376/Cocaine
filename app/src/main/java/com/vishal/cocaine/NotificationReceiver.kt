@@ -37,6 +37,7 @@ class NotificationReceiver : BroadcastReceiver() {
             }
 
             ApplicationClass.EXIT -> {
+                musicService!!.audioManager.abandonAudioFocus(PlayerActivity.musicService)
                 musicService!!.stopForeground(true)
                 musicService!!.mediaPlayer!!.release()
                 musicService = null
