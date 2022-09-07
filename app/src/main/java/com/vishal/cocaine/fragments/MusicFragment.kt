@@ -59,18 +59,18 @@ class MusicFragment : Fragment() {
         }
 
         //recycler setup
-        setSongRecycler()
+        setSongRecyclerMF()
     }
 
-    private fun setSongRecycler() {
+    private fun setSongRecyclerMF() {
 
         rvSongsList.layoutManager = LinearLayoutManager(requireContext())
         rvSongsList.adapter = MusicAdapter(requireContext(), songListMF)
 
-        val songListAnim = LayoutAnimationController(AnimationUtils.loadAnimation(requireContext(),R.anim.slide_up_anim))
-        songListAnim.delay = 0.2f
-        songListAnim.order = LayoutAnimationController.ORDER_NORMAL
-        rvSongsList.layoutAnimation = songListAnim
+        val songListAnimFF = LayoutAnimationController(AnimationUtils.loadAnimation(requireContext(),R.anim.slide_up_anim))
+        songListAnimFF.delay = 0.2f
+        songListAnimFF.order = LayoutAnimationController.ORDER_NORMAL
+        rvSongsList.layoutAnimation = songListAnimFF
 
     }
 
