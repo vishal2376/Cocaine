@@ -61,7 +61,7 @@
             android:layout_marginHorizontal="5dp"
             android:scrollbarThumbVertical="@drawable/scroll_line"
             android:scrollbars="vertical"
-            tools:listitem="@layout/music_grid_item" />
+            tools:listitem="@layout/music_item" />
 
         <!--        shuffle song button-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton

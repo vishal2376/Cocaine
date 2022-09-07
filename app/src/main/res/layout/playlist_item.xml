@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="180dp"
+    android:layout_width="190dp"
     android:layout_height="220dp"
     android:background="@color/primaryDark"
     android:gravity="center"
@@ -10,22 +10,25 @@
     <!--    image-->
     <androidx.cardview.widget.CardView
         android:layout_width="150dp"
-        android:layout_height="140dp"
-        app:cardCornerRadius="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_height="150dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/imgThumbnailPI"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/primary"
+                android:padding="15dp"
                 android:src="@drawable/logo" />
 
 
             <ImageView
+                android:id="@+id/imgPlayPI"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_alignParentEnd="true"
@@ -41,32 +44,33 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:paddingHorizontal="15dp">
+        android:paddingHorizontal="25dp">
         <!--        playlist name-->
 
         <TextView
-            android:id="@+id/tvPlaylistTitle"
+            android:id="@+id/tvPlaylistTitlePI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
-            android:fontFamily="@font/space"
+            android:fontFamily="@font/kollektif"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="@string/song_name"
             android:textColor="@color/text"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/tvPlaylistSongCount"
+            android:id="@+id/tvSongCountPI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/space"
             android:text="24 Songs"
             android:textColor="@color/text"
-            android:textSize="13sp" />
+            android:textSize="11sp" />
 
 
     </LinearLayout>
