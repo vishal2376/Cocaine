@@ -21,6 +21,9 @@ Cocaine is A Music Player App made in Kotlin Language.
 | <img src="screenshots/Player_UI.jpg" width="200px"> | <img src="screenshots/MusicList_UI.jpg" width="200px"> |
 |:---:|:---:|
 | Player UI | Music List UI |
+| <img src="screenshots/Playlist_UI.jpg" width="200px"> | <img src="screenshots/Notification.jpg" width="200px"> |
+|:---:|:---:|
+| Playlist UI | Notification |
 
 ## Features
 
