@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vishal.cocaine.fragments.FavoriteFragment
 import com.vishal.cocaine.fragments.MusicFragment
+import com.vishal.cocaine.fragments.NowPlayingFragment.Companion.binding
 import com.vishal.cocaine.models.*
 import kotlinx.android.synthetic.main.activity_player.*
 
@@ -220,8 +221,13 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
     private fun changeSong(nextSong: Boolean) {
         setSongPosition(nextSong)
 
-        // init music player again
+        //set layout of player activity
         setLayout()
+
+        //set layout of now playing
+        setLayoutNP()
+
+        // init music player again
         createMediaPlayer()
     }
 
@@ -319,7 +325,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         tvSongTitlePA.isSelected = true
 
         //set image
-        setImgArt(this, songListPA[songPosition].path, imgCurrentSongPA)
+        setImgArt(baseContext, songListPA[songPosition].path, imgSongPA)
 
         //set blurry background
         setBlurImgArt(this, songListPA[songPosition].path,backgroundPA)
@@ -339,6 +345,30 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         else
             imgFavPA.setImageResource(R.drawable.ic_favorite)
 
+
+    }
+
+      // set layout of Now Playing
+    private fun setLayoutNP() {
+
+        //song image
+        setImgArt(
+            baseContext, songListPA[songPosition].path,
+            binding.imgCurrentSongNP
+        )
+
+        //song title
+        binding.tvSongTitleNP.text =
+            songListPA[songPosition].title
+
+        //moving title
+        binding.tvSongTitleNP.isSelected = true
+
+        //set play pause icon
+        if (isPlaying)
+            binding.imgPlayPauseNP.setImageResource(R.drawable.ic_pause)
+        else
+            binding.imgPlayPauseNP.setImageResource(R.drawable.ic_play)
 
     }
 
