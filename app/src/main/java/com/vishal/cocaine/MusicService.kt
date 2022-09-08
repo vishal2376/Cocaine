@@ -8,8 +8,11 @@ import android.graphics.BitmapFactory
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Binder
+import android.os.Build
 import android.os.IBinder
+import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
+import android.support.v4.media.session.PlaybackStateCompat
 import androidx.core.app.NotificationCompat
 import com.vishal.cocaine.PlayerActivity.Companion.fabPlayPausePA
 import com.vishal.cocaine.PlayerActivity.Companion.isPlaying
@@ -117,11 +120,70 @@ class MusicService : Service(), AudioManager.OnAudioFocusChangeListener {
             .addAction(R.drawable.ic_exit, "Exit", exitPendingIntent)
             .build()
 
+        // headphone button control
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val playbackSpeed = if (isPlaying) 1F else 0F
+            mediaSession.setMetadata(
+                MediaMetadataCompat.Builder()
+                    .putLong(
+                        MediaMetadataCompat.METADATA_KEY_DURATION,
+                        mediaPlayer!!.duration.toLong()
+                    )
+                    .build()
+            )
+            val playBackState = PlaybackStateCompat.Builder()
+                .setState(
+                    PlaybackStateCompat.STATE_PLAYING,
+                    mediaPlayer!!.currentPosition.toLong(),
+                    playbackSpeed
+                )
+                .setActions(PlaybackStateCompat.ACTION_SEEK_TO)
+                .build()
+            mediaSession.setPlaybackState(playBackState)
+            mediaSession.setCallback(object : MediaSessionCompat.Callback() {
+
+                //play and pause onclick event
+                override fun onMediaButtonEvent(mediaButtonEvent: Intent?): Boolean {
+                    if (isPlaying) {
+                        //pause music
+                        fabPlayPausePA.setImageResource(R.drawable.ic_play)
+                        NowPlayingFragment.binding.imgPlayPauseNP.setImageResource(R.drawable.ic_play)
+                        isPlaying = false
+                        mediaPlayer!!.pause()
+                        showNotification(R.drawable.ic_play)
+                    } else {
+
+                        //play music
+                        fabPlayPausePA.setImageResource(R.drawable.ic_pause)
+                        NowPlayingFragment.binding.imgPlayPauseNP.setImageResource(R.drawable.ic_pause)
+                        isPlaying = true
+                        mediaPlayer!!.start()
+                        showNotification(R.drawable.ic_pause)
+                    }
+                    return super.onMediaButtonEvent(mediaButtonEvent)
+                }
+
+                override fun onSeekTo(pos: Long) {
+                    super.onSeekTo(pos)
+                    mediaPlayer!!.seekTo(pos.toInt())
+                    val playBackStateNew = PlaybackStateCompat.Builder()
+                        .setState(
+                            PlaybackStateCompat.STATE_PLAYING,
+                            mediaPlayer!!.currentPosition.toLong(),
+                            playbackSpeed
+                        )
+                        .setActions(PlaybackStateCompat.ACTION_SEEK_TO)
+                        .build()
+                    mediaSession.setPlaybackState(playBackStateNew)
+                }
+            })
+        }
+
         startForeground(300, notification)
 
     }
 
-    //on recieving calls and messages
+    //on receiving calls and messages
     override fun onAudioFocusChange(focusChange: Int) {
         if (focusChange <= 0) {
             //pause music
