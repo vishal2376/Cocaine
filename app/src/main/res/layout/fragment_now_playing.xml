@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:elevation="100dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="70dp"
     android:background="@drawable/round_border_box"
+    android:elevation="100dp"
+    android:orientation="vertical"
     tools:context=".fragments.NowPlayingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="58dp"
         android:gravity="center"
-        android:paddingHorizontal="10dp"
-        tools:ignore="UselessParent">
+        android:paddingHorizontal="10dp">
 
         <!--    song image-->
         <androidx.cardview.widget.CardView
@@ -45,7 +45,7 @@
             android:singleLine="true"
             android:text="@string/song_name"
             android:textColor="@color/text"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <!--        play song button-->
         <ImageView
@@ -68,4 +68,13 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+    <SeekBar
+        android:id="@+id/seekBarNP"
+        android:layout_width="match_parent"
+        android:thumb="@color/text"
+        android:layout_height="20dp"
+        android:layout_marginBottom="5dp"
+        android:progressTint="@color/colorAccentDark"
+        android:thumbTint="@color/colorAccentDark" />
+
+</LinearLayout>

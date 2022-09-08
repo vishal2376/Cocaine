@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="350dp"
                 android:layout_marginHorizontal="40dp"
-                app:cardBackgroundColor="@color/primary"
+                app:cardBackgroundColor="@color/primaryDark"
                 app:cardCornerRadius="20dp">
 
                 <ImageView

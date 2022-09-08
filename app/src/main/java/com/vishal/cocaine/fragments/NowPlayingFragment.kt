@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import com.vishal.cocaine.PlayerActivity
 import com.vishal.cocaine.PlayerActivity.Companion.isPlaying
 import com.vishal.cocaine.PlayerActivity.Companion.musicService
 import com.vishal.cocaine.PlayerActivity.Companion.nowPlayingID
+import com.vishal.cocaine.PlayerActivity.Companion.runnable
 import com.vishal.cocaine.PlayerActivity.Companion.songListPA
 import com.vishal.cocaine.PlayerActivity.Companion.songPosition
 import com.vishal.cocaine.R
@@ -93,6 +96,26 @@ class NowPlayingFragment : Fragment() {
         else
             binding.imgPlayPauseNP.setImageResource(R.drawable.ic_play)
 
+        //set seekbar
+        seekBarNP.progress = 0
+        seekBarNP.max = musicService!!.mediaPlayer!!.duration
+        setSeekBarNP()
+
+    }
+
+      //set seekbar position
+    private fun setSeekBarNP() {
+
+        runnable = Runnable {
+
+            seekBarNP.progress = musicService!!.mediaPlayer!!.currentPosition
+
+            //increment seekbar with song position
+            Handler(Looper.getMainLooper()).postDelayed(runnable, 1000)
+        }
+
+        // start runnable after 0 millisecond
+        Handler(Looper.getMainLooper()).postDelayed(runnable, 0)
     }
 
     //--------------song related functions-------------------
