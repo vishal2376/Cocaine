@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="65dp"
         android:gravity="center"
         android:paddingHorizontal="10dp">
 
@@ -72,8 +72,7 @@
         android:id="@+id/seekBarNP"
         android:layout_width="match_parent"
         android:thumb="@color/text"
-        android:layout_height="20dp"
-        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
         android:progressTint="@color/colorAccentDark"
         android:thumbTint="@color/colorAccentDark" />
 
