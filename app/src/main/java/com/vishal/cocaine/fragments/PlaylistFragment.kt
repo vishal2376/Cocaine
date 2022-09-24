@@ -12,7 +12,6 @@ import com.vishal.cocaine.R
 import com.vishal.cocaine.adapters.PlaylistAdapter
 import com.vishal.cocaine.databinding.FragmentPlaylistBinding
 import com.vishal.cocaine.models.Playlist
-import kotlinx.android.synthetic.main.fragment_playlist.*
 
 class PlaylistFragment : Fragment() {
 
@@ -29,13 +28,13 @@ class PlaylistFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_playlist, container, false)
-        FragmentPlaylistBinding.bind(view)
+        binding = FragmentPlaylistBinding.bind(view)
 
         //set recycler view
         setRecyclerPF()
 
         //add playlist button
-        fabAddPlaylistPF.setOnClickListener {
+        binding.fabAddPlaylistPF.setOnClickListener {
             addPlaylistDialog()
         }
 
@@ -44,12 +43,15 @@ class PlaylistFragment : Fragment() {
 
     private fun addPlaylistDialog() {
         val addDialog =
-            LayoutInflater.from(requireContext()).inflate(R.layout.playlist_dialog, binding.root,false)
+            LayoutInflater.from(requireContext())
+                .inflate(R.layout.playlist_dialog, binding.root, false)
         val builder = MaterialAlertDialogBuilder(requireContext())
-        builder.setTitle("New Playlist")
-        builder.setPositiveButton("ADD"){dialog,_ ->
+        builder.setView(addDialog)
+            .setTitle("New Playlist")
+            .setPositiveButton("ADD") { dialog, _ ->
             dialog.dismiss()
-        }
+        }.show()
+
     }
 
     private fun setRecyclerPF() {
@@ -66,8 +68,8 @@ class PlaylistFragment : Fragment() {
             "Playlist 5",
         )
 
-        rvPlaylistPF.layoutManager = GridLayoutManager(requireContext(), 2)
-        rvPlaylistPF.adapter = PlaylistAdapter(requireContext(), tempData)
+        binding.rvPlaylistPF.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvPlaylistPF.adapter = PlaylistAdapter(requireContext(), tempData)
     }
 
 }

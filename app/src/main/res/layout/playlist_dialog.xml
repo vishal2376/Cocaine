@@ -18,6 +18,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text"
             android:singleLine="true"
             android:inputType="text"
             android:maxLength="40"/>
