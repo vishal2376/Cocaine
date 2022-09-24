@@ -119,6 +119,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 FavoriteFragment.songListFF.removeAt(favIndex)
             } else {
                 isFavorite = true
+                favIndex = songPosition
                 imgFavPA.setImageResource(R.drawable.ic_baseline_favorite)
                 FavoriteFragment.songListFF.add(songListPA[songPosition])
             }
