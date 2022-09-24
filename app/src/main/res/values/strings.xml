@@ -12,5 +12,6 @@
     <string name="artist">Artist</string>
     <string name="song_name">Song Name</string>
     <string name="time_stamp">0:00</string>
+    <string name="playlist_name">Playlist Name</string>
 
 </resources>
