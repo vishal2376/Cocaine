@@ -23,6 +23,10 @@ data class Song(
     val artUri: String
 )
 
+class SongPlaylist{
+    var ref:ArrayList<Playlist> = ArrayList()
+}
+
 fun formatDuration(duration: Long): String {
     val minutes = TimeUnit.MINUTES.convert(duration, TimeUnit.MILLISECONDS)
     val seconds = (TimeUnit.SECONDS.convert(duration, TimeUnit.MILLISECONDS)

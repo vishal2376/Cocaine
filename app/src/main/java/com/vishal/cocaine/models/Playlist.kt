@@ -1,8 +1,7 @@
 package com.vishal.cocaine.models
 
 data class Playlist(
-    val id : Int,
     val title:String,
-    val thumbnail: String,
+    val list: ArrayList<Song>,
     val totalSongs: Int
 )
