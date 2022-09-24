@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryDark"
     android:gravity="center"
     android:orientation="vertical"
@@ -60,6 +61,23 @@
             android:layout_marginHorizontal="10dp"
             tools:listitem="@layout/playlist_item" />
 
+
+            <!--        shuffle song button-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabShuffleFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/colorAccentDark"
+            app:fabCustomSize="60dp"
+            app:maxImageSize="30dp"
+            tools:ignore="ContentDescription" />
     </RelativeLayout>
 
 </LinearLayout>
