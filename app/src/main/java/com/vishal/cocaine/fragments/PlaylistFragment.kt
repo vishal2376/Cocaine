@@ -31,11 +31,13 @@ class PlaylistFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_playlist, container, false)
         FragmentPlaylistBinding.bind(view)
 
-        //add playlist button
-        addPlaylistDialog()
-
         //set recycler view
         setRecyclerPF()
+
+        //add playlist button
+        fabAddPlaylistPF.setOnClickListener {
+            addPlaylistDialog()
+        }
 
         return view
     }
