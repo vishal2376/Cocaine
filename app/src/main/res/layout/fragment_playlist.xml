@@ -58,8 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="10dp"
-            android:scrollbarThumbVertical="@drawable/scroll_line"
-            android:scrollbars="vertical"
             tools:listitem="@layout/playlist_item" />
 
     </RelativeLayout>
