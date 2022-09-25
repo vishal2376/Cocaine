@@ -4,18 +4,18 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginEnd="15dp"
-    app:cardElevation="20dp"
     android:layout_marginBottom="15dp"
     app:cardBackgroundColor="@color/primary"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="20dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:paddingBottom="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
 
         <!--    song image-->
         <androidx.cardview.widget.CardView
@@ -26,9 +26,9 @@
 
             <ImageView
                 android:id="@+id/imgSongG"
-            android:padding="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="15dp"
                 android:src="@drawable/logo" />
 
         </androidx.cardview.widget.CardView>
@@ -40,8 +40,8 @@
             android:id="@+id/tvSongTitleG"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
             android:layout_marginTop="10dp"
+            android:ellipsize="end"
             android:fontFamily="@font/kollektif"
             android:singleLine="true"
             android:text="@string/song_name"
@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/space"
+            android:singleLine="true"
             android:text="@string/artist"
             android:textColor="@color/text"
             android:textSize="13sp" />
